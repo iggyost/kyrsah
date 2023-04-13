@@ -1,0 +1,163 @@
+﻿<Window x:Class="kyrsah.View.Windows.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kyrsah.View.Windows"
+        mc:Ignorable="d"
+       Title="StartWindow" Height="900" Width="1600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/kyrsah;component/Resourses/даг2.jpg"/>
+        </Grid.Background>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <!--#region Меню приложения-->
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                CornerRadius="12"
+                Margin="0 30 0 0">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2"
+                                  BlurRadius="10"
+                                  Color="#FF346D76"/>
+
+            </Border.Effect>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF1DDBE4" Offset="0"/>
+                    <GradientStop Color="#FF346D76" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1.6*"/>
+                </Grid.ColumnDefinitions>
+                <!--Логотип-->
+                <TextBlock Text="ExcursionPRO"
+                           FontSize="35"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontWeight="SemiBold"/>
+                <!--Кнопки для навигации-->
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="1">
+                    <Button Name="TurBtn" 
+                            Content="Туры" 
+                            Click="TurBtn_Click"
+                            Style="{StaticResource MenuButton}"/>
+                    <Button Name="ExsBtn"
+                            Content="Экскурсии" 
+                            Click="ExsBtn_Click"
+                            Style="{StaticResource MenuButton}"/>
+                    <Button Name="NewsBtnn" Content="Новости" 
+                            Style="{StaticResource MenuButton}"
+                            Click="NewsBtnn_Click"/>
+                    <Button Name="Contacts"
+                        Content="Контакты" 
+                            Style="{StaticResource MenuButton}"
+                            Click="Contacts_Click"/>
+                    <Button Name="Zakaz"
+                        Content="Корзина" 
+                            Style="{StaticResource MenuButton}"
+                            Click="Zakaz_Click"/>
+                </StackPanel>
+
+                <!--Вход или регистрация-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="2">
+
+                    <Button Name="LoginBtn"
+                            Content="Вход"
+                            Click="LoginBtn_Click"
+                    Style="{StaticResource MenuButton}"  />
+
+                    <TextBlock Text="или"
+                               Foreground="#8FFFFFFF"
+                               FontSize="21"
+                               Margin="5 0 15 0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+
+                    <Button Name="RegistrationBtn"
+                            Content="Регистрация"
+                            Click="RegistrationBtn_Click"
+                            Style="{StaticResource RegistrationButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!--#region Меню окна-->
+        <Grid Name="WindowMenuGrid"
+              Background="#FF29A4AD"
+              Grid.ColumnSpan="3"
+              MouseLeftButtonDown="WindowMenuGrid_MouseLeftButtonDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width ="1*"/>
+                <ColumnDefinition Width ="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Экскурсионная фирма ExcursionPRO"
+                       Foreground="White"
+                       FontSize="15"
+                       VerticalAlignment="Center"
+                       Margin="10 0 0 0"/>
+            <Button Background="{x:Null}" 
+                    Grid.ColumnSpan="3"
+                    MouseDoubleClick="Button_MouseDoubleClick"/>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right">
+                <Button Name="MinimizeBtn"
+                        Content="—"
+                        Style="{StaticResource WindowButton}"
+                        Click="MinimizeBtn_Click"
+                        ToolTip="Свернуть"/>
+                <Button Name="MaximizeBtn"
+                        Content="◱"
+                        Style="{StaticResource WindowButton}"
+                        Click="MaximizeBtn_Click"
+                        ToolTip="Развернуть"/>
+                <Button Name="CloseAppBtn"
+                        Content="✕"
+                        Style="{StaticResource WindowButton}"
+                        Click="CloseAppBtn_Click"
+                        ToolTip="Закрыть"/>
+            </StackPanel>
+        </Grid>
+
+        <!--#region Страничная навигация-->
+        <Frame Name="MainFrame"
+               Grid.Row="2"
+               Grid.Column="1"
+               NavigationUIVisibility="Hidden">
+            <Frame.Background>
+                <ImageBrush/>
+            </Frame.Background>
+        </Frame>
+        <!--#endregion-->
+
+
+
+    </Grid>
+</Window>

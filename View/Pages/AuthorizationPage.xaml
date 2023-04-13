@@ -1,0 +1,91 @@
+﻿<Page x:Class="kyrsah.View.Pages.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kyrsah.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="690" d:DesignWidth="1240"
+      Title="AuthorizationPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Margin="216,0,0,0"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Авторизация"
+                       FontSize="45"
+                       Foreground="White" FontWeight="Bold" Width="1233"/>
+        </StackPanel>
+        <TextBlock Text="Введите адрес электронной почты"
+                       FontSize="35"
+                       Foreground="White" 
+                       Grid.Row="1" FontWeight="Bold" Margin="216,0,0,0"/>
+        <GroupBox Grid.Row="2"
+                  Foreground="White"
+                  FontSize="47"
+                  BorderThickness="0">
+            <TextBox  
+                      Name="LoginTb" FontSize="45"
+                     Grid.Row="3" Height="65" Margin="216,10,216,10"/>
+
+        </GroupBox>
+        <TextBlock Text="Введите пароль"
+                       FontSize="35"
+                       Foreground="White" 
+                       Grid.Row="3" FontWeight="Bold" Margin="216,0,0,0"/>
+
+        <TextBlock Text="Забыли пароль?"
+                   FontSize="30"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Grid.Row="5" Margin="216,0,0,0"/>
+
+        <GroupBox Grid.Row="4"
+                  Foreground="White"
+                  FontSize="47"
+                  BorderThickness="0">
+            <PasswordBox 
+                Name="PasswordPb" 
+                Height="65" 
+                Margin="216,10,216,10"
+                FontSize="45">
+
+            </PasswordBox>
+
+        </GroupBox>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Grid.Row="6" Height="104" Margin="0,0,0,86">
+
+            <Button Name="LoginBtn"
+                Content="Войти"
+                    Margin="216,0,0,0"
+                    FontSize="40"
+                Click="LoginBtn_Click"  Width="250"
+                    Style="{StaticResource RegistrationButton}" FontWeight="Bold"/>
+
+            <TextBlock Text="или"
+                               Foreground="#8FFFFFFF"
+                               FontSize="35"
+                               Margin="5 0 15 0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" RenderTransformOrigin="0.535,-0.588" FontWeight="Bold" TextDecorations="{x:Null}"/>
+            <TextBlock Height="45" FontWeight="Bold" Margin="0,30"><Hyperlink NavigateUri=" View/Pages/RegistrationPage.xaml"  
+                           FontSize="35"><Run Text="Зарегистрироваться"/></Hyperlink></TextBlock>
+
+        </StackPanel>
+
+
+
+    </Grid>
+</Page>

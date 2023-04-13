@@ -1,0 +1,41 @@
+﻿<Page x:Class="kyrsah.View.Pages.StartPage1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kyrsah.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="690" d:DesignWidth="1240"
+      Title="StartPage1">
+   
+    <Grid>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="2">
+            <StackPanel.Background>
+                <ImageBrush/>
+            </StackPanel.Background>
+            <TextBlock Text="ТУРЫ ПО ДАГЕСТАНУ"
+                       Grid.Row="3"
+                       FontSize="100"
+                       Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.519,2.002" HorizontalAlignment="Left" Width="1094" Height="204"/>
+            <TextBlock
+                       FontSize="50"
+                       Foreground="White" Height="197" Margin="0,0,10,0"><Run Text="В Дагестане много достопримечательностей,"/><LineBreak/><Run Text=" удивительных и красивых мест!"/></TextBlock>
+
+
+        </StackPanel>
+        <Button Name="TurVbBth"
+            Content="Выбрать тур ->"
+                FontSize="25"
+                Click="TurVbBth_Click"
+                Style="{StaticResource RegistrationButton}" Height="60" Margin="48,435,895,195" FontWeight="Bold">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF3DB3BB" Offset="1"/>
+                    <GradientStop Color="#FF55C8D1" Offset="0.561"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Page>

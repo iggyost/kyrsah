@@ -4,55 +4,150 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:kyrsah.View.Pages"
+      xml:lang="RU-ru"
       mc:Ignorable="d" 
       d:DesignHeight="690" d:DesignWidth="1240"
-      Title="TurPage">
+      Title="TurPage" Loaded="Page_Loaded">
 
     <Grid>
-        <ListBox Name="TurLb" SelectionChanged="selectTour" >
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Width="1550"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+        <Button HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Panel.ZIndex="1"
+                Style="{StaticResource RegistrationButton}"
+                Name="AddEventBtn"
+                Margin="210 0 0 0" Click="AddEventBtn_Click">Добавить мероприятие</Button>
+        <ListBox Name="TurLb" 
+                 SelectionChanged="selectTour"
+                 VirtualizingPanel.ScrollUnit="Pixel"
+                 Background="Transparent"
+                 BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="300">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="180"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="86"/>
-                        </Grid.RowDefinitions>
-
-                        <Image Source="{Binding Uri}" 
-                               Stretch="UniformToFill"/>
-
-                       
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="25"
-                                Text="{Binding NotifyOnSourceUpdated, StringFormat={}dd MMM,ConverterCulture=ru-Ru}"/>
-
-                      
-
-                        <TextBlock Grid.Row="1"
-                            Text="{Binding Title}"
-                                   FontWeight="SemiBold"
-                                   Margin="0 5"
-                                   TextWrapping="Wrap"/>
-
-                        <TextBlock Grid.Row="2"
-                                   Text="{Binding Information}"
-                                   TextWrapping="Wrap"
-                                   FontSize="15"/>
-
-                        <Button Grid.Row="3"
-                            Content="Забронировать"
-                                Style="{StaticResource RegistrationButton}"/>
-
-
-
-                    </Grid>
+                    <StackPanel>
+                        <Border Background="Transparent"
+                                Height="300"
+                                Width="1200"
+                                HorizontalAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Column="1"
+                                            Grid.RowSpan="2"
+                                            Panel.ZIndex="1"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Right"
+                                            Orientation="Horizontal"
+                                            Margin="0 16 0 0">
+                                    <Button Margin="0 0 16 0"
+                                            Style="{StaticResource RegistrationButton}"
+                                            Tag="{Binding id}"
+                                            Name="EditTourBtn" Click="EditTourBtn_Click">Изменить</Button>
+                                    <Button Style="{StaticResource RegistrationButton}"
+                                            Tag="{Binding id}"
+                                            Name="RemoveTourBtn" Click="RemoveTourBtn_Click">Удалить</Button>
+                                </StackPanel>
+                                <Grid Grid.Row="1"
+                                      Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="288"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="256"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderBrush="Transparent"
+                                        BorderThickness="2">
+                                        <Grid>
+                                            <Image Stretch="Fill"
+                                               Name="TourImage"
+                                               Source="{Binding image}"></Image>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1"
+                                                Grid.RowSpan="2"
+                                                Margin="32 0 0 0">
+                                        <TextBlock FontSize="24" 
+                                                   Foreground="White"
+                                                   Text="{Binding rating,StringFormat={}Рейтинг 0.0 / 5}"></TextBlock>
+                                        <TextBlock FontSize="32"
+                                                   FontWeight="SemiBold"
+                                               Foreground="White" 
+                                               Margin="0 8 0 0"
+                                               Text="{Binding name}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Name="LocationPanel" 
+                                                    Cursor="Hand"
+                                                    MouseLeftButtonUp="LocationPanel_MouseLeftButtonUp">
+                                            <Image Source="/Resourses/icons8-location-50.png"
+                                                   Stretch="Fill"
+                                                   Width="32"
+                                                   Height="32"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="0 0 4 10"></Image>
+                                            <TextBlock FontSize="28" 
+                                                   Foreground="LightGray" 
+                                                   Margin="0 48 0 8"
+                                                   Name="LocationTbl"
+                                                   Text="{Binding location}" 
+                                                   MouseLeftButtonUp="LocationTbl_MouseLeftButtonUp"></TextBlock>
+                                        </StackPanel>
+                                        <Separator Background="White"></Separator>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"
+                                                Grid.Column="1"
+                                                VerticalAlignment="Bottom"
+                                                HorizontalAlignment="Left"
+                                                Margin="24 0 0 24">
+                                        <TextBlock FontSize="24" 
+                                               Foreground="White"
+                                               Text="{Binding start_date, StringFormat={}{0:dd MMMM\, dddd}}"></TextBlock>
+                                        <Border BorderBrush="White"
+                                            BorderThickness="2"
+                                            Width="32"
+                                            Height="2"
+                                            Margin="24 4 0 0"></Border>
+                                        <TextBlock FontSize="24" 
+                                               Foreground="White"
+                                               Margin="24 0 0 0"
+                                               Text="{Binding return_date, StringFormat={}{0:dd MMMM\, dddd}}"></TextBlock>
+                                    </StackPanel>
+                                    <Border Grid.Column="1"
+                                            Margin="0 0 0 12"
+                                            Background="#b929A4AD"
+                                            CornerRadius="4"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Padding="8">
+                                        <TextBlock FontSize="28" 
+                                           Foreground="White"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Right"
+                                           Text="{Binding cost, StringFormat={}От 0 000₽}"></TextBlock>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border BorderBrush="LightGray"
+                                BorderThickness="1"
+                                CornerRadius="2"></Border>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical"
+                               HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
         </ListBox>
     </Grid>
 </Page>

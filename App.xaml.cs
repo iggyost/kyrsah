@@ -1,4 +1,5 @@
-﻿using System;
+﻿using kyrsah.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,9 @@ namespace kyrsah
     /// </summary>
     public partial class App : Application
     {
+        public static DagestanToursDbEntities context = new DagestanToursDbEntities();
+        public static Tour tour = new Tour();
+        public static Users enteredUser = new Users();
+        public static string locationMap;
     }
 }

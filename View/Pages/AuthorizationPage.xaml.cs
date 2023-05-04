@@ -1,5 +1,4 @@
 ﻿using kyrsah.AppData;
-using kyrsah.Model;
 using kyrsah.View.Windows;
 using System;
 using System.Collections.Generic;

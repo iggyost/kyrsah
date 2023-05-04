@@ -12,21 +12,9 @@ namespace kyrsah.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Images
     {
-        public User()
-        {
-            this.Order = new HashSet<Order>();
-        }
-    
-        public int Id { get; set; }
-        public int IdRole { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string FIO { get; set; }
-        public string Phone { get; set; }
-    
-        public virtual ICollection<Order> Order { get; set; }
-        public virtual Role Role { get; set; }
+        public int id { get; set; }
+        public byte[] image { get; set; }
     }
 }

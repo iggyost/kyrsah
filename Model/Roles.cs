@@ -12,18 +12,16 @@ namespace kyrsah.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class HotelComplex
+    public partial class Roles
     {
-        public HotelComplex()
+        public Roles()
         {
-            this.Excursion = new HashSet<Excursion>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Nutrition { get; set; }
-        public string Rating { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
     
-        public virtual ICollection<Excursion> Excursion { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

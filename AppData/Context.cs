@@ -1,5 +1,4 @@
-﻿using kyrsah.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,6 @@ namespace kyrsah.AppData
 {
     public static class Context
     {
-        public static Kurs_PankEntities _con = new Kurs_PankEntities();
+
     }
 }

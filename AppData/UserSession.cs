@@ -1,5 +1,4 @@
-﻿using kyrsah.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,6 @@ namespace kyrsah.AppData
             try
             {
                 //создать 
-                User user = new User()
-                {
-                    FIO= FIOTb.Text,
-                    Email = email.Text,
-                    Password = password.Password,
-                    IdRole = 2
-                };
-                //добавить
-                ModelHelper.GetContext().User.Add(user);
-
-                //сохранить
-                ModelHelper.GetContext().SaveChanges();
 
                 //оповестить
                 MessageBox.Show("Пользователь зарегистрирован!");

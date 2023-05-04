@@ -13,10 +13,10 @@ namespace kyrsah.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Kurs_PankEntities : DbContext
+    public partial class DagestanToursDbEntities : DbContext
     {
-        public Kurs_PankEntities()
-            : base("name=Kurs_PankEntities")
+        public DagestanToursDbEntities()
+            : base("name=DagestanToursDbEntities")
         {
         }
     
@@ -25,12 +25,11 @@ namespace kyrsah.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<CarrierCompany> CarrierCompany { get; set; }
-        public DbSet<Excursion> Excursion { get; set; }
-        public DbSet<HotelComplex> HotelComplex { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<Role> Role { get; set; }
+        public DbSet<Images> Images { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Roles> Roles { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Tour> Tour { get; set; }
     }
 }

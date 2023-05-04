@@ -4,19 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d19c81bc468d4a64bd6af1a806e49512" Name="Diagram1">
-        <EntityTypeShape EntityType="Kurs_PankModel.CarrierCompany" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kurs_PankModel.Excursion" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kurs_PankModel.HotelComplex" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kurs_PankModel.Order" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kurs_PankModel.Role" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kurs_PankModel.sysdiagrams" Width="1.5" PointX="9.5" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Kurs_PankModel.User" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <AssociationConnector Association="Kurs_PankModel.FK_Excursion_CarrierCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="Kurs_PankModel.FK_Excursion_HotelComplex" ManuallyRouted="false" />
-        <AssociationConnector Association="Kurs_PankModel.FK_Order_Excursion" ManuallyRouted="false" />
-        <AssociationConnector Association="Kurs_PankModel.FK_Order_User" ManuallyRouted="false" />
-        <AssociationConnector Association="Kurs_PankModel.FK_User_Role" ManuallyRouted="false" />
+      <Diagram DiagramId="743b6d9304034ec99cfbf287cbc38c9b" Name="Diagram1">
+        <EntityTypeShape EntityType="DagestanToursDbModel.Images" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.Orders" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.Roles" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="DagestanToursDbModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DagestanToursDbModel.FK_Users_Roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.Tour" Width="1.5" PointX="0.75" PointY="5" />
+        <AssociationConnector Association="DagestanToursDbModel.FK_Orders_Tour" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

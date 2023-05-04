@@ -12,14 +12,21 @@ namespace kyrsah.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Users
     {
-        public int Id { get; set; }
-        public int IdExcursion { get; set; }
-        public int IdUser { get; set; }
-        public System.DateTime DateOfPurchase { get; set; }
+        public Users()
+        {
+            this.Orders = new HashSet<Orders>();
+        }
     
-        public virtual Excursion Excursion { get; set; }
-        public virtual User User { get; set; }
+        public int id { get; set; }
+        public int role_id { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string full_name { get; set; }
+        public string phone { get; set; }
+    
+        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual Roles Roles { get; set; }
     }
 }

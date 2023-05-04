@@ -1,6 +1,10 @@
 ﻿using kyrsah.AppData;
+using kyrsah.Model;
+using kyrsah.View.Windows;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace kyrsah.View.Pages
 {
@@ -24,29 +29,6 @@ namespace kyrsah.View.Pages
         public TurPage()
         {
             InitializeComponent();
-            List<TurClass> newList = new List<TurClass>()
-            {
-        new TurClass () {Title="БОЛЬШОЕ ПУТЕШЕСТВИЕ ПО ДАГЕСТАНУ | 5 ДНЕЙ |",Information="40,000P",  Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/путешествие.jpeg")},
-        new TurClass () {Title="ГУНИБ | САЛТИНСКОЕ УЩЕЛЬЕ",Information="3,300Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/ущелье.jpg")},
-                new TurClass () {Title="ДЕРБЕНТ | НАРЫН — КАЛА",Information="3,500Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/дербент.jpeg")},
-                new TurClass () {Title="ДАГЕСТАН | ПОЛЁТ СВОБОДЫ | ИММЕРСИВНОЕ ПУТЕШЕСТВИЕ | 5 ДНЕЙ",Information="57,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/полет1.jpg")},
-                new TurClass () {Title="КАСПИЙСКИЙ ВОЯЖ | 8 ДНЕЙ |",Information="19,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/каспийск.jpg")},          
-                new TurClass () {Title="ГОРНЫЙ ДАГЕСТАН | 4 ДНЯ |",Information="25,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/горы.jpg")},
-                new TurClass () {Title="ДЖИП ТУР | 5 ДНЕЙ",Information="55,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/джип.jpg")},
-                new TurClass () {Title="ХУНЗАХ — ВОДОПАДЫ",Information="3,300Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/хунзах.jpg")},
-                new TurClass () {Title="КАВКАЗСКИЕ КАНИКУЛЫ | ОТ ЧЕЧНИ ДО ДАГЕСТАНА | 5 ДНЕЙ |",Information="40,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/чечня.jpeg")},
-                new TurClass () {Title="ПОЛЕТ СВОБОДЫ",Information="54,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/свобода.jpg")},
-                new TurClass () {Title="ПОЛЕТ СВОБОДЫ",Information="54,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/свобода.jpg")},
-                new TurClass () {Title="ДАГЕСТАНСКАЯ ШВЕЙЦАРИЯ",Information="13,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/ШВЕЙЦАРИЯ.jpg")},
-                new TurClass () {Title="МАХАЧКАЛА РАСУЛА ГАМЗАТОВА",Information="19,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/РАСУЛ.jpg")},
-              
-                new TurClass () {Title="КАСПИЙСКИЙ ВОЯЖ | 8 ДНЕЙ |",Information="19,000Р", Uri=new Uri(@"O:/Pankrateva_Ekaterina/kyrsah/kyrsah/Resourses/каспийск.jpg")},
-                
-            };
-            foreach (TurClass news in newList)
-            {
-                TurLb.Items.Add(news);
-            }
         }
 
         private void selectTour(object sender, SelectionChangedEventArgs e)
@@ -55,6 +37,105 @@ namespace kyrsah.View.Pages
             {
                 NavigationService.Navigate(new currentTour(tur));
 
+            }
+        }
+
+        private void Border_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
+        //private static BitmapImage LoadImage(byte[] imageData)
+        //{
+        //    if (imageData == null || imageData.Length == 0) return null;
+        //    var image = new BitmapImage();
+        //    using (var mem = new MemoryStream(imageData))
+        //    {
+        //        mem.Position = 0;
+        //        image.BeginInit();
+        //        image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+        //        image.CacheOption = BitmapCacheOption.OnLoad;
+        //        image.UriSource = null;
+        //        image.StreamSource = mem;
+        //        image.EndInit();
+        //    }
+        //    image.Freeze();
+        //    return image;
+        //}
+        Tour tour = new Tour();
+        //public System.Drawing.Image BinaryToImage(byte[] binaryData)
+        //{
+        //    MemoryStream ms = new MemoryStream(binaryData);
+        //    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+        //    return img;
+        //}
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            TurLb.ItemsSource = App.context.Tour.ToList();
+            if (tour.image != null)
+            {
+                System.Drawing.Image x = (Bitmap)((new ImageConverter()).ConvertFrom(tour.image));
+            }
+            else
+            {
+
+            }
+        }
+
+        private void AddEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddEventWindow addEventWindow = new AddEventWindow();
+            addEventWindow.ShowDialog();
+            if (addEventWindow.DialogResult == true)
+            {
+                TurLb.ItemsSource = App.context.Tour.ToList();
+            }
+        }
+
+        private void LocationTbl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void LocationPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (TurLb.SelectedIndex != -1)
+            {
+                App.tour = TurLb.SelectedItem as Tour;
+                App.locationMap = App.tour.location_on_map.ToString();
+                YandexMapWindow mapWindow = new YandexMapWindow();
+                mapWindow.ShowDialog();
+            }
+            else
+            {
+
+            }
+        }
+
+        private void RemoveTourBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result;
+            result = MessageBox.Show("Вы действительно хотите удалить тур?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                Button btn = (Button)sender;
+                int index = int.Parse(btn.Tag.ToString());
+                var currentTour = App.context.Tour.Where(t => t.id == index).FirstOrDefault();
+                App.context.Tour.Remove(currentTour);
+                App.context.SaveChanges();
+                TurLb.ItemsSource = App.context.Tour.ToList();
+            }
+        }
+
+        private void EditTourBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            int index = int.Parse(btn.Tag.ToString());
+            App.tour = App.context.Tour.Where(t => t.id == index).FirstOrDefault();
+            AddEventWindow addEventWindow = new AddEventWindow(App.tour);
+            addEventWindow.ShowDialog();
+            if (addEventWindow.DialogResult == true)
+            {
+                TurLb.ItemsSource = App.context.Tour.ToList();
             }
         }
     }

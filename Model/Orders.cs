@@ -12,16 +12,14 @@ namespace kyrsah.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CarrierCompany
+    public partial class Orders
     {
-        public CarrierCompany()
-        {
-            this.Excursion = new HashSet<Excursion>();
-        }
+        public int id { get; set; }
+        public int user_id { get; set; }
+        public int event_id { get; set; }
+        public decimal total_cost { get; set; }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<Excursion> Excursion { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Tour Tour { get; set; }
     }
 }

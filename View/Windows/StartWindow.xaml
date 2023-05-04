@@ -21,14 +21,12 @@
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="140"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
-
 
         <!--#region Меню приложения-->
         <Border Grid.Row="1"
@@ -156,8 +154,6 @@
             </Frame.Background>
         </Frame>
         <!--#endregion-->
-
-
 
     </Grid>
 </Window>

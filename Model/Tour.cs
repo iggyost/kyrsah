@@ -12,16 +12,23 @@ namespace kyrsah.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Tour
     {
-        public Role()
+        public Tour()
         {
-            this.User = new HashSet<User>();
+            this.Orders = new HashSet<Orders>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public decimal cost { get; set; }
+        public string location { get; set; }
+        public string location_on_map { get; set; }
+        public double rating { get; set; }
+        public byte[] image { get; set; }
+        public System.DateTime start_date { get; set; }
+        public System.DateTime return_date { get; set; }
     
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

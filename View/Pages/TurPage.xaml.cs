@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,10 +34,10 @@ namespace kyrsah.View.Pages
 
         private void selectTour(object sender, SelectionChangedEventArgs e)
         {
-            if (TurLb.SelectedItem is TurClass tur)
+            if (TurLb.SelectedIndex != -1)
             {
-                NavigationService.Navigate(new currentTour(tur));
-
+                App.tour = TurLb.SelectedItem as Tour;
+                NavigationService.Navigate(new CurrentTourPage(App.tour));
             }
         }
 
@@ -44,41 +45,10 @@ namespace kyrsah.View.Pages
         {
 
         }
-        //private static BitmapImage LoadImage(byte[] imageData)
-        //{
-        //    if (imageData == null || imageData.Length == 0) return null;
-        //    var image = new BitmapImage();
-        //    using (var mem = new MemoryStream(imageData))
-        //    {
-        //        mem.Position = 0;
-        //        image.BeginInit();
-        //        image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-        //        image.CacheOption = BitmapCacheOption.OnLoad;
-        //        image.UriSource = null;
-        //        image.StreamSource = mem;
-        //        image.EndInit();
-        //    }
-        //    image.Freeze();
-        //    return image;
-        //}
         Tour tour = new Tour();
-        //public System.Drawing.Image BinaryToImage(byte[] binaryData)
-        //{
-        //    MemoryStream ms = new MemoryStream(binaryData);
-        //    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-        //    return img;
-        //}
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             TurLb.ItemsSource = App.context.Tour.ToList();
-            if (tour.image != null)
-            {
-                System.Drawing.Image x = (Bitmap)((new ImageConverter()).ConvertFrom(tour.image));
-            }
-            else
-            {
-
-            }
         }
 
         private void AddEventBtn_Click(object sender, RoutedEventArgs e)
@@ -88,26 +58,6 @@ namespace kyrsah.View.Pages
             if (addEventWindow.DialogResult == true)
             {
                 TurLb.ItemsSource = App.context.Tour.ToList();
-            }
-        }
-
-        private void LocationTbl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void LocationPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (TurLb.SelectedIndex != -1)
-            {
-                App.tour = TurLb.SelectedItem as Tour;
-                App.locationMap = App.tour.location_on_map.ToString();
-                YandexMapWindow mapWindow = new YandexMapWindow();
-                mapWindow.ShowDialog();
-            }
-            else
-            {
-
             }
         }
 
@@ -138,5 +88,96 @@ namespace kyrsah.View.Pages
                 TurLb.ItemsSource = App.context.Tour.ToList();
             }
         }
+
+        private void TurLb_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (App.enteredUser != null)
+            {
+                if (App.enteredUser.role_id == 1)
+                {
+
+                }
+            }
+        }
+        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void borderBackground_Loaded(object sender, RoutedEventArgs e)
+        {
+            Border brd = (Border)sender;
+            int index = int.Parse(brd.Tag.ToString());
+            var currentTour = App.context.Tour.Where(t => t.id == index).FirstOrDefault();
+            if (brd.Tag != null)
+            {
+                if (currentTour.rating == 5)
+                {
+                    brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#802cba00");
+                }
+                else if (currentTour.rating < 5 && currentTour.rating > 4)
+                {
+                    brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#80a3ff00");
+                }
+                else if (currentTour.rating <= 4 && currentTour.rating > 3)
+                {
+                    brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#80fff400");
+                }
+                else if (currentTour.rating <= 3 && currentTour.rating > 2)
+                {
+                    brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#80ffa700");
+                }
+                else if (currentTour.rating <= 2 && currentTour.rating > 0)
+                {
+                    brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#80ff0000");
+                }
+                else if (currentTour.rating == 0)
+                {
+                    brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#80000000");
+                }
+            }
+        }
+        Button btnEdit;
+        Button btnRemove;
+        private void EditTourBtn_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnEdit = (Button)sender;
+            if (App.enteredUser != null)
+            {
+                if (App.enteredUser.role_id == 1)
+                {
+                    btnEdit.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnEdit.Visibility = Visibility.Collapsed;
+                }
+            }
+            else
+            {
+                btnEdit.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void RemoveTourBtn_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnRemove = (Button)sender;
+            if (App.enteredUser != null)
+            {
+                if (App.enteredUser.role_id == 1)
+                {
+                    btnRemove.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnRemove.Visibility = Visibility.Collapsed;
+                }
+            }
+            else
+            {
+                btnRemove.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
+
+

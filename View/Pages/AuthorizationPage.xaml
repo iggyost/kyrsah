@@ -35,7 +35,7 @@
                   FontSize="47"
                   BorderThickness="0">
             <TextBox  
-                      Name="LoginTb" FontSize="45"
+                      Name="EmailTb" FontSize="45"
                      Grid.Row="3" Height="65" Margin="216,10,216,10"/>
 
         </GroupBox>

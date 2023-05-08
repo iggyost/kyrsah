@@ -119,17 +119,17 @@
     <Compile Include="View\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\currentTour.xaml.cs">
-      <DependentUpon>currentTour.xaml</DependentUpon>
+    <Compile Include="View\Pages\CurrentTourPage.xaml.cs">
+      <DependentUpon>CurrentTourPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\ExsPage.xaml.cs">
       <DependentUpon>ExsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\Korzina.xaml.cs">
-      <DependentUpon>Korzina.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
@@ -189,19 +189,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\CartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\ContactsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\currentTour.xaml">
+    <Page Include="View\Pages\CurrentTourPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\ExsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\Korzina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

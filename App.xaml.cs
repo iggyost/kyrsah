@@ -1,4 +1,5 @@
 ﻿using kyrsah.Model;
+using kyrsah.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,7 +17,8 @@ namespace kyrsah
     {
         public static DagestanToursDbEntities context = new DagestanToursDbEntities();
         public static Tour tour = new Tour();
-        public static Users enteredUser = new Users();
+        public static Orders orders = new Orders();
+        public static Users enteredUser;
         public static string locationMap;
     }
 }

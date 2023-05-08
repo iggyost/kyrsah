@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace kyrsah.View.Windows
@@ -24,8 +25,9 @@ namespace kyrsah.View.Windows
         {
             InitializeComponent();
             MainFrame.Navigate(new StartPage1());
+            AuthUserPanel.Visibility = Visibility.Collapsed;
+            Application.Current.MainWindow = this;
         }
-
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new AuthorizationPage());
@@ -86,11 +88,6 @@ namespace kyrsah.View.Windows
             MainFrame.Navigate(new TurPage());
         }
 
-        private void ExsBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new ExsPage());
-        }
-
         private void NewsBtnn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -108,7 +105,31 @@ namespace kyrsah.View.Windows
 
         private void Zakaz_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Korzina());
+            if (App.enteredUser != null)
+            {
+                MainFrame.Navigate(new CartPage());
+            }
+            else
+            {
+                MessageBox.Show("Войдите для просмотра корзины!");
+            }
+        }
+
+        private void DeauthBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                App.enteredUser = null;
+                AuthUserTbl.Text = string.Empty;
+                AuthUserPanel.Visibility = Visibility.Collapsed;
+                AuthRegPanel.Visibility = Visibility.Visible;
+                MainFrame.NavigationService.Navigate(new StartPage1());
+            }
+            else
+            {
+
+            }
         }
     }
 }

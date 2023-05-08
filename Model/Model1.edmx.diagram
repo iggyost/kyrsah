@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="743b6d9304034ec99cfbf287cbc38c9b" Name="Diagram1">
-        <EntityTypeShape EntityType="DagestanToursDbModel.Images" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DagestanToursDbModel.Orders" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DagestanToursDbModel.Roles" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DagestanToursDbModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
@@ -14,7 +13,7 @@
         <AssociationConnector Association="DagestanToursDbModel.FK_Users_Roles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DagestanToursDbModel.Tour" Width="1.5" PointX="0.75" PointY="5" />
         <AssociationConnector Association="DagestanToursDbModel.FK_Orders_Tour" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

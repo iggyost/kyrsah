@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kyrsah.View.Windows"
         mc:Ignorable="d"
-        Title="AddEventWindow" Height="800" Width="1240">
+        Title="AddEventWindow" Height="900" Width="1240">
     <Window.Background>
         <ImageBrush ImageSource="/Resourses/dagestan.jpg"/>
     </Window.Background>
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <Border Background="Transparent"
-                            Height="700"
+                            Height="800"
                             Width="1200"
                             HorizontalAlignment="Center">
             <Grid>
@@ -74,33 +74,44 @@
                                 Margin="16 0 0 0"
                                 Width="600">
                         <StackPanel>
-                            <TextBlock FontSize="24" 
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="24"
+                                       Foreground="White"
+                                       Margin="0 8 0 8">Рейтинг:</TextBlock>
+                                <TextBlock FontSize="24"
+                                           Name="ratingValue"
+                                           Margin="12 0 0 0"
                                            Foreground="White"
-                                           Text="{Binding Tour.rating}">Рейтинг</TextBlock>
-                            <TextBox Name="RatingTb"
-                                     HorizontalAlignment="Left"
-                                     Width="100"
-                                     FontSize="20" TextChanged="RatingTb_TextChanged"></TextBox>
-                            <TextBlock Name="RatingValidationTbl"
-                                       FontSize="24"
-                                       HorizontalAlignment="Left"
-                                       Foreground="LightCoral" 
-                                       Background="#7F000000"></TextBlock>
+                                           VerticalAlignment="Center">0</TextBlock>
+                            </StackPanel>
+                            <Slider Maximum="5"
+                                    Name="ratingSlider"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="0.1" ValueChanged="Slider_ValueChanged"></Slider>
                         </StackPanel>
                         <StackPanel>
                             <TextBlock FontSize="24" 
                                            Foreground="White" 
                                            Margin="0 8 0 0"
-                                           Text="{Binding Tour.name}">Название</TextBlock>
+                                           Text="{Binding name}">Название</TextBlock>
                             <TextBox Name="NameTb"
                                      HorizontalAlignment="Left"
                                      FontSize="20"
+                                     MaxLength="100"
                                      Width="600" TextChanged="NameTb_TextChanged"></TextBox>
                             <TextBlock Name="NameValidationTbl"
-                                       FontSize="24"
+                                       FontSize="20"
                                        HorizontalAlignment="Left"
                                        Foreground="LightCoral" 
                                        Background="#7F000000"></TextBlock>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontSize="24"
+                                       Foreground="White">Описание</TextBlock>
+                            <TextBox Height="64"
+                                     Name="DescriptionTb"
+                                     TextWrapping="Wrap"
+                                     MaxLength="500"></TextBox>
                         </StackPanel>
                         <StackPanel>
                             <TextBlock FontSize="24" 
@@ -111,10 +122,12 @@
                                      Width="300"
                                      FontSize="20" TextChanged="LocationTb_TextChanged"></TextBox>
                             <TextBlock Name="LocationValidationTbl"
-                                       FontSize="24"
+                                       FontSize="20"
                                        HorizontalAlignment="Left"
                                        Foreground="LightCoral" 
-                                       Background="#7F000000"></TextBlock>
+                                       Background="#7F000000"
+                                       TextWrapping="Wrap"
+                                       MaxWidth="600"></TextBlock>
                         </StackPanel>
                         <StackPanel Margin="0 0 0 0">
                             <TextBlock Foreground="White"
@@ -124,54 +137,58 @@
                                      HorizontalAlignment="Left"
                                      Width="500" TextChanged="CoordinatesTb_TextChanged"></TextBox>
                             <TextBlock Name="CoordinatesValidationTbl"
-                                       FontSize="24"
+                                       FontSize="20"
                                        HorizontalAlignment="Left"
                                        Foreground="LightCoral" 
                                        Background="#7F000000"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
-                                        Grid.Column="1"
-                                        VerticalAlignment="Bottom"
-                                        HorizontalAlignment="Left"
-                                        Margin="32 32 0 0">
-                            <StackPanel>
-                                <TextBlock FontSize="24" 
-                                           Foreground="White"
-                                           Text="{Binding start_date}">Отбытие</TextBlock>
-                                <DatePicker Name="StartDateDp"
-                                        FontSize="20" SelectedDateChanged="StartDateDp_SelectedDateChanged"></DatePicker>
-                                <TextBlock Name="StartValidationTbl"
-                                       FontSize="24"
-                                       HorizontalAlignment="Left"
-                                       Foreground="LightCoral" 
-                                       Background="#7F000000"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Margin="32 0 0 0">
-                                <TextBlock FontSize="24" 
-                                           Foreground="White"
-                                           Text="{Binding return_date}">Возвращение</TextBlock>
-                                <DatePicker Name="ReturnDateDp"
-                                        FontSize="20" SelectedDateChanged="ReturnDateDp_SelectedDateChanged"></DatePicker>
-                                <TextBlock Name="ReturnValidationTbl"
-                                       FontSize="24"
-                                       HorizontalAlignment="Left"
-                                       Foreground="LightCoral" 
-                                       Background="#7F000000"></TextBlock>
-                            </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="1"
                                     VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Right">
-                            <TextBlock FontSize="32" 
+                                    HorizontalAlignment="Left"
+                                    Margin="32 32 0 0">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <TextBlock FontSize="24" 
                                            Foreground="White"
-                                           Text="{Binding Tour.cost}">Цена</TextBlock>
-                            <TextBox Name="CostTb"
-                                 FontSize="20"></TextBox>
-                            <TextBlock Name="CostValidationTbl"
-                                       FontSize="24"
+                                           Text="{Binding start_date}">Отбытие</TextBlock>
+                                    <DatePicker Name="StartDateDp"
+                                        FontSize="20" SelectedDateChanged="StartDateDp_SelectedDateChanged"></DatePicker>
+                                </StackPanel>
+                                <StackPanel Margin="32 0 0 0">
+                                    <TextBlock FontSize="24" 
+                                           Foreground="White"
+                                           Text="{Binding return_date}">Возвращение</TextBlock>
+                                    <DatePicker Name="ReturnDateDp"
+                                        FontSize="20" SelectedDateChanged="ReturnDateDp_SelectedDateChanged"></DatePicker>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Name="DateValidationTbl"
+                                       FontSize="20"
                                        HorizontalAlignment="Left"
                                        Foreground="LightCoral" 
-                                       Background="#7F000000"></TextBlock>
+                                       Background="#7F000000"
+                                       TextWrapping="Wrap"
+                                       MaxWidth="500"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left">
+                            <StackPanel>
+                                <TextBlock FontSize="32" 
+                                           Foreground="White"
+                                           Text="{Binding Tour.cost}">Цена</TextBlock>
+                                <TextBox Name="CostTb"
+                                         Width="150"
+                                         HorizontalAlignment="Left"
+                                 FontSize="20" TextChanged="CostTb_TextChanged"></TextBox>
+                            </StackPanel>
+                            <TextBlock Name="CostValidationTbl"
+                                       FontSize="20"
+                                       HorizontalAlignment="Left"
+                                       Foreground="LightCoral" 
+                                       Background="#7F000000"
+                                       MaxWidth="500"
+                                       TextWrapping="Wrap"></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

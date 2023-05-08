@@ -26,10 +26,18 @@ namespace kyrsah.View.Pages
         {
             InitializeComponent();
         }
-
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var user = App.context.Users.Where(u => u.email == EmailTb.Text && u.password == PasswordPb.Password).FirstOrDefault();
+            if (user != null) 
+            { 
+                App.enteredUser = user;
+                MessageBox.Show("Авторизация пройдена успешна!");
+                NavigationService.Navigate(new StartPage1());
+                (Application.Current.MainWindow as StartWindow).AuthRegPanel.Visibility = Visibility.Collapsed;   
+                (Application.Current.MainWindow as StartWindow).AuthUserPanel.Visibility = Visibility.Visible;   
+                (Application.Current.MainWindow as StartWindow).AuthUserTbl.Text = App.enteredUser.email;   
+            }
         }
     }
 }

@@ -14,20 +14,19 @@
         <Grid.Background>
             <ImageBrush ImageSource="/kyrsah;component/Resourses/даг2.jpg"/>
         </Grid.Background>
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="140"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
+        <Rectangle Grid.ColumnSpan="3"
+                   Grid.RowSpan="3" 
+                   Fill="#26000000"></Rectangle>
         <!--#region Меню приложения-->
         <Border Grid.Row="1"
                 Grid.Column="1"
@@ -47,9 +46,9 @@
             </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="1.6*"/>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <!--Логотип-->
                 <TextBlock Text="ExcursionPRO"
@@ -61,18 +60,12 @@
                 <!--Кнопки для навигации-->
 
                 <StackPanel Orientation="Horizontal"
-                            Grid.Column="1">
+                            Grid.Column="1"
+                            HorizontalAlignment="Right">
                     <Button Name="TurBtn" 
                             Content="Туры" 
                             Click="TurBtn_Click"
                             Style="{StaticResource MenuButton}"/>
-                    <Button Name="ExsBtn"
-                            Content="Экскурсии" 
-                            Click="ExsBtn_Click"
-                            Style="{StaticResource MenuButton}"/>
-                    <Button Name="NewsBtnn" Content="Новости" 
-                            Style="{StaticResource MenuButton}"
-                            Click="NewsBtnn_Click"/>
                     <Button Name="Contacts"
                         Content="Контакты" 
                             Style="{StaticResource MenuButton}"
@@ -81,11 +74,31 @@
                         Content="Корзина" 
                             Style="{StaticResource MenuButton}"
                             Click="Zakaz_Click"/>
+                    <Button Name="NewsBtnn" Content="О нас" 
+                            Style="{StaticResource MenuButton}"
+                            Click="NewsBtnn_Click"/>
                 </StackPanel>
 
                 <!--Вход или регистрация-->
+                <StackPanel Grid.Column="2"
+                            Name="AuthUserPanel"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Panel.ZIndex="1"
+                            Orientation="Horizontal"
+                            Margin="32 0 0 0">
+                    <TextBlock FontSize="24"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="0 0 16 0"
+                               Name="AuthUserTbl">Email</TextBlock>
+                    <Button Style="{StaticResource RegistrationButton}"
+                            Name="DeauthBtn" Click="DeauthBtn_Click">Выйти</Button>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal"
-                            Grid.Column="2">
+                            HorizontalAlignment="Right"
+                            Grid.Column="2"
+                            Name="AuthRegPanel">
 
                     <Button Name="LoginBtn"
                             Content="Вход"

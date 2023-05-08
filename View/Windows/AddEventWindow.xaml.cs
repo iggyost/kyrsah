@@ -1,10 +1,12 @@
 ﻿using kyrsah.Model;
+using kyrsah.View.Pages;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +28,7 @@ namespace kyrsah.View.Windows
         {
             InitializeComponent();
             EditEventBtn.Visibility = Visibility.Collapsed;
-            AddNewEventBtn.Visibility = Visibility.Visible;   
+            AddNewEventBtn.Visibility = Visibility.Visible;
         }
         public AddEventWindow(Tour selectedTour)
         {
@@ -47,32 +49,56 @@ namespace kyrsah.View.Windows
 
             }
             NameTb.Text = App.tour.name;
+            ratingSlider.Value = App.tour.rating;
             LocationTb.Text = App.tour.location;
             CostTb.Text = Convert.ToString(App.tour.cost);
-            RatingTb.Text = Convert.ToString(App.tour.rating);
             LocationTb.Text = App.tour.location;
             CoordinatesTb.Text = App.tour.location_on_map;
             StartDateDp.SelectedDate = App.tour.start_date;
             ReturnDateDp.SelectedDate = App.tour.return_date;
             AddNewEventBtn.Visibility = Visibility.Collapsed;
             EditEventBtn.Visibility = Visibility.Visible;
+            isNameValidated = true;
+            isLocationValidated = true;
+            isCoordinatesValidated = true;
+            isStartDateValidated = true;
+            isReturnDateValidated = true;
+            isHaveImageValidated = true;
+            isCostValidated = true;
         }
+        double middleRatingValue;
+        int ratingCounter;
+        double sumOfAllRatings;
         private void EditEventBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.tour.name = NameTb.Text;
-            App.tour.location = LocationTb.Text;
-            App.tour.cost = Convert.ToDecimal(CostTb.Text);
-            App.tour.start_date = (DateTime)App.tour.start_date;
-            App.tour.return_date = (DateTime)App.tour.return_date;
-            App.tour.rating = Convert.ToDouble(RatingTb.Text);
-            App.tour.location_on_map = CoordinatesTb.Text;
-            App.tour.image = getJPGFromImageControl(eventImage.Source as BitmapImage);
+            if (isNameValidated == true &&
+                isLocationValidated == true &&
+                isCoordinatesValidated == true &&
+                isStartDateValidated == true &&
+                isReturnDateValidated == true &&
+                isHaveImageValidated == true &&
+                isCostValidated == true)
+            {
+                App.tour.name = NameTb.Text;
+                App.tour.location = LocationTb.Text;
+                App.tour.cost = Convert.ToDecimal(CostTb.Text);
+                App.tour.rating = ratingSlider.Value;
+                App.tour.start_date = (DateTime)App.tour.start_date;
+                App.tour.return_date = (DateTime)App.tour.return_date;
+                App.tour.location_on_map = CoordinatesTb.Text;
+                App.tour.image = getJPGFromImageControl(eventImage.Source as BitmapImage);
+                App.tour.description = DescriptionTb.Text;
 
-            App.context.Entry(App.tour).State = System.Data.EntityState.Modified;
-            App.context.SaveChanges();
-            MessageBox.Show("Тур успешно изменён!");
-            this.DialogResult = true;
-            this.Close();
+                App.context.Entry(App.tour).State = System.Data.EntityState.Modified;
+                App.context.SaveChanges();
+                MessageBox.Show("Тур успешно изменён!");
+                this.DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Не все поля заполнены верно!");
+            }
         }
         public static Image byteArrToImage(byte[] byteArr)
         {
@@ -111,62 +137,176 @@ namespace kyrsah.View.Windows
         }
         private void AddNewEventBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (eventImage.Source != null)
             {
-                Tour tour = new Tour()
+                isHaveImageValidated = true;
+            }
+            else
+            {
+                isHaveImageValidated = false;
+            }
+            if (isNameValidated == true &&
+                isLocationValidated == true &&
+                isCoordinatesValidated == true &&
+                isStartDateValidated == true &&
+                isReturnDateValidated == true &&
+                isHaveImageValidated == true &&
+                isCostValidated == true)
+            {
+                try
                 {
-                    name = NameTb.Text,
-                    cost = Convert.ToDecimal(CostTb.Text),
-                    location = LocationTb.Text,
-                    location_on_map = CoordinatesTb.Text,
-                    rating = Convert.ToDouble(RatingTb.Text),
-                    image = image_bytes,
-                    start_date = (DateTime)StartDateDp.SelectedDate,
-                    return_date = (DateTime)ReturnDateDp.SelectedDate,
-                };
-                App.context.Tour.Add(tour);
-                App.context.SaveChanges();
-                MessageBox.Show("Успешно!");
-                this.DialogResult = true;
-                this.Close();
+                    Tour tour = new Tour()
+                    {
+                        name = NameTb.Text,
+                        cost = Convert.ToDecimal(CostTb.Text),
+                        location = LocationTb.Text,
+                        location_on_map = CoordinatesTb.Text,
+                        rating = ratingSlider.Value,
+                        image = image_bytes,
+                        start_date = (DateTime)StartDateDp.SelectedDate,
+                        return_date = (DateTime)ReturnDateDp.SelectedDate,
+                        description = DescriptionTb.Text,
+                    };
+                    TurPage turPage = new TurPage();
+                    App.context.Tour.Add(tour);
+                    App.context.SaveChanges();
+                    MessageBox.Show("Успешно!");
+                    this.DialogResult = true;
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    Exception exc = new Exception();
+                    MessageBox.Show(exc.Message);
+                }
             }
-            catch (Exception)
+            else
             {
-                throw;
+                MessageBox.Show("Не все поля заполнены верно!");
             }
 
 
         }
-
-        private void RatingTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        bool isNameValidated = false;
+        bool isLocationValidated = false;
+        bool isCoordinatesValidated = false;
+        bool isStartDateValidated = false;
+        bool isReturnDateValidated = false;
+        bool isHaveImageValidated = false;
+        bool isCostValidated = false;
 
         private void NameTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (NameTb.Text != string.Empty && NameTb.Text.Length > 2)
+            {
+                NameValidationTbl.Text = string.Empty;
+                isNameValidated = true;
+            }
+            else
+            {
+                NameValidationTbl.Text = "Название тура должно содержать не менее 3 символов!";
+                isNameValidated = false;
+            }
         }
 
         private void LocationTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            string validationMsg1;
+            string validationMsg2;
+            Regex isCyrillic = new Regex(@"\p{IsCyrillic}");
+            if (isCyrillic.IsMatch(LocationTb.Text))
+            {
+                validationMsg1 = string.Empty;
+                isLocationValidated = true;
+            }
+            else
+            {
+                validationMsg1 = "Название места тура должно содержать только кириллицу! ";
+                isLocationValidated = false;
+            }
+            if (LocationTb.Text.Length > 3)
+            {
+                validationMsg2 = string.Empty;
+                isLocationValidated = true;
+            }
+            else
+            {
+                validationMsg2 = "Название места тура должно содержать не менее 4 символов! ";
+                isLocationValidated = false;
+            }
+            LocationValidationTbl.Text = validationMsg1 + validationMsg2;
         }
 
         private void CoordinatesTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Regex isCoordinates = new Regex("^(\\d+\\.\\d+),\\s(\\d+\\.\\d+)$");
+            if (isCoordinates.IsMatch(CoordinatesTb.Text))
+            {
+                CoordinatesValidationTbl.Text = string.Empty;
+                isCoordinatesValidated = true;
+            }
+            else if (CoordinatesTb.Text == string.Empty)
+            {
+                CoordinatesValidationTbl.Text = string.Empty;
+                isCoordinatesValidated = true;
+            }
+            else
+            {
+                CoordinatesValidationTbl.Text = "Неправильный формат координат Яндекс Карты!";
+                isCoordinatesValidated = false;
+            }
         }
 
         private void StartDateDp_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (ReturnDateDp.SelectedDate < StartDateDp.SelectedDate)
+            {
+                DateValidationTbl.Text = "Дата возвращения не может быть раньше чем дата отбытия!";
+                isReturnDateValidated = false;
+                isStartDateValidated = false;
+            }
+            else
+            {
+                DateValidationTbl.Text = string.Empty;
+                isReturnDateValidated = true;
+                isStartDateValidated = true;
+            }
         }
 
         private void ReturnDateDp_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (ReturnDateDp.SelectedDate < StartDateDp.SelectedDate)
+            {
+                DateValidationTbl.Text = "Дата возвращения не может быть раньше чем дата отбытия!";
+                isReturnDateValidated = false;
+                isStartDateValidated = false;
+            }
+            else
+            {
+                DateValidationTbl.Text = string.Empty;
+                isReturnDateValidated = true;
+                isStartDateValidated = true;
+            }
         }
 
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            ratingValue.Text = ratingSlider.Value.ToString();
+        }
+
+        private void CostTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Regex isDigit = new Regex("^[0-9]+$");
+            if (isDigit.IsMatch(CostTb.Text))
+            {
+                CostValidationTbl.Text = string.Empty;
+                isCostValidated = true;
+            }
+            else
+            {
+                CostValidationTbl.Text = "Цена должна состоять только из цифр!";
+                isCostValidated = false;
+            }
+        }
     }
 }

@@ -128,8 +128,8 @@
     <Compile Include="View\Pages\CurrentTourPage.xaml.cs">
       <DependentUpon>CurrentTourPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\ExsPage.xaml.cs">
-      <DependentUpon>ExsPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
@@ -201,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\ExsPage.xaml">
+    <Page Include="View\Pages\NewsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

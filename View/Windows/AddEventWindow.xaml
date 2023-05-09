@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kyrsah.View.Windows"
         mc:Ignorable="d"
-        Title="AddEventWindow" Height="900" Width="1240">
+        Title="AddEventWindow" Height="900" Width="1240"
+        WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="/Resourses/dagestan.jpg"/>
     </Window.Background>

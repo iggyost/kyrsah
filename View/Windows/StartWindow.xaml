@@ -74,7 +74,7 @@
                         Content="Корзина" 
                             Style="{StaticResource MenuButton}"
                             Click="Zakaz_Click"/>
-                    <Button Name="NewsBtnn" Content="О нас" 
+                    <Button Name="NewsBtnn" Content="Новости" 
                             Style="{StaticResource MenuButton}"
                             Click="NewsBtnn_Click"/>
                 </StackPanel>

@@ -4,30 +4,111 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:kyrsah.View.Pages"
+      xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="690" d:DesignWidth="1240"
-      Title="ContactsPage">
+      Title="ContactsPage" Loaded="Page_Loaded">
 
-    <Grid Margin="0,10,0,0" Background="white" >
+    <Grid Margin="16 0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            
-        
-            
-           
+            <RowDefinition Height="0.4*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            
-         
-
-
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0"
+        <TextBlock FontSize="40"
+                   VerticalAlignment="Top"
+                   Foreground="White"
+                   FontWeight="SemiBold">Наши контакты</TextBlock>
+        <TextBlock Grid.Column="1"
+                   FontSize="40"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontWeight="SemiBold">Мы на карте</TextBlock>
+        <wv2:WebView2 Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="8"
+                      Name="locationWV"></wv2:WebView2>
+        <Grid Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel Background="#19000000">
+                    <StackPanel Background="#19000000">
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Адрес</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">г. Москва, Ленинский проспект, д.2-2а. Офис 737</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">Метро Октябрьская, кольцевая</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Режим работы</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">Пн - Сб с 10:00 до 18:00, воскресенье - выходной</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Номер телефона</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">+7(928)808-63-00</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">E-mail</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">dagtour.msk@mail.ru</TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="0 16 0 0" Background="#19000000">
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Адрес</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">г. Махачкала</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Режим работы</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">Пн - Вс с 10:00 до 18:00</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Номер телефона</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">+7(988)291-00-55</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">E-mail</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">dagtour.mhl@mail.ru</TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="0 16 0 0" Background="#19000000">
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Адрес</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">г. Дербент, пер. Карла Маркса 2/43</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Режим работы</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">Пн - Вс с 10:00 до 18:00</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">Номер телефона</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">+7(928)508-40-44</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="28"
+                               FontWeight="Medium">E-mail</TextBlock>
+                        <TextBlock Foreground="White"
+                               FontSize="24">dagtour.der@mail.ru</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!--<TextBlock Grid.Row="0"
             Text="Остались вопросы?"
                    FontSize="35" TextDecorations="{x:Null}" TextAlignment="Center"/>
 
@@ -50,7 +131,7 @@
         <TextBlock Grid.Column="1"
                    Grid.Row="2"
                    FontSize="28" TextAlignment="Center" Margin="0,25,0,-26"
-            ><Run Text=" г.Дербент "/><LineBreak/><Run Text="пер.Карла Маркса 2/43  "/><LineBreak/><Run Text="+7(928) 508-40-44 "/><LineBreak/><Run Text="Пн-Вс с 10:00 до 18:00  "/><LineBreak/><Run Text="dagtour.der@mail.ru"/><LineBreak/><Run Text=" Ждем ваших писем!"/></TextBlock>
+            ><Run Text=" г.Дербент "/><LineBreak/><Run Text="пер.Карла Маркса 2/43  "/><LineBreak/><Run Text="+7(928) 508-40-44 "/><LineBreak/><Run Text="Пн-Вс с 10:00 до 18:00  "/><LineBreak/><Run Text="dagtour.der@mail.ru"/><LineBreak/><Run Text=" Ждем ваших писем!"/></TextBlock>-->
 
 
     </Grid>

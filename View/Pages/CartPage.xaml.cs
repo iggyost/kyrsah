@@ -24,7 +24,6 @@ namespace kyrsah.View.Pages
         public CartPage()
         {
             InitializeComponent();
-            ToursCartLb.ItemsSource = App.context.Tour.Where(t => t.id == App.context.Orders.Select(o => o.event_id).FirstOrDefault() && App.context.Orders.Select(o => o.user_id).FirstOrDefault() == App.enteredUser.id).ToList();
         }
 
         private void borderBackground_Loaded(object sender, RoutedEventArgs e)
@@ -58,6 +57,48 @@ namespace kyrsah.View.Pages
                 {
                     brd.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#80000000");
                 }
+            }
+        }
+        decimal totalCost;
+        private void ToursCartLb_Loaded(object sender, RoutedEventArgs e)
+        {
+            var tours = App.context.Tour
+                                   .Join(App.context.Orders, tour => tour.id, orders => orders.event_id, (tour, orders) => new { tour, orders })
+                                   .Where(x => x.orders.user_id == App.enteredUser.id)
+                                   .Select(x => x.tour)
+                                   .ToList();
+            ToursCartLb.ItemsSource = tours;
+            if (ToursCartLb.HasItems)
+            {
+                foreach (var item in tours)
+                {
+                    totalCost += item.cost;
+                }
+                totalCostTbl.Text = totalCost.ToString() + "₽";
+            }
+            else
+            {
+
+            }
+        }
+        private void removeFromCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.Tag != null)
+            {
+                int index = int.Parse(btn.Tag.ToString());
+                var currentTour = App.context.Tour.Where(t => t.id == index).FirstOrDefault();
+                var tourInCart = App.context.Orders.Where(o => o.event_id == currentTour.id).FirstOrDefault();
+                App.context.Orders.Remove(tourInCart);
+                App.context.SaveChanges();
+                var tours = App.context.Tour
+                                   .Join(App.context.Orders, tour => tour.id, orders => orders.event_id, (tour, orders) => new { tour, orders })
+                                   .Where(x => x.orders.user_id == App.enteredUser.id)
+                                   .Select(x => x.tour)
+                                   .ToList();
+                ToursCartLb.ItemsSource = tours;
+                totalCost = totalCost - currentTour.cost;
+                totalCostTbl.Text = totalCost.ToString() + "₽";
             }
         }
     }

@@ -90,7 +90,7 @@ namespace kyrsah.View.Windows
 
         private void NewsBtnn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new NewsPage());
         }
 
         private void TurVbBth_Click(object sender, RoutedEventArgs e)

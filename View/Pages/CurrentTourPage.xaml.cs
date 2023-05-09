@@ -66,16 +66,16 @@ namespace kyrsah.View.Pages
 
         private void LocationPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (App.tour != null)
-            {
-                App.locationMap = App.tour.location_on_map.ToString();
-                YandexMapWindow mapWindow = new YandexMapWindow();
-                mapWindow.ShowDialog();
-            }
-            else
-            {
+            //if (App.tour != null)
+            //{
+            //    App.locationMap = App.tour.location_on_map.ToString();
+            //    YandexMapWindow mapWindow = new YandexMapWindow();
+            //    mapWindow.ShowDialog();
+            //}
+            //else
+            //{
 
-            }
+            //}
         }
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
@@ -93,13 +93,41 @@ namespace kyrsah.View.Pages
                     user_id = App.enteredUser.id,
                     total_cost = App.tour.cost,
                 };
-                App.context.Orders.Add(orders);
-                App.context.SaveChanges();
-                MessageBox.Show("Тур добавлен в корзину!");
+                try
+                {
+                    var currentOrders = App.context.Orders.Where(o => o.event_id == App.tour.id && o.user_id == App.enteredUser.id).ToList();
+                    if (currentOrders.Count == 0)
+                    {
+                        App.context.Orders.Add(orders);
+                        App.context.SaveChanges();
+                        MessageBox.Show("Тур добавлен в корзину!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Этот тур уже в корзине!");
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
             }
-            else 
+            else
             {
                 MessageBox.Show("Чтобы добавить тур в корзину, авторизуйтесь!");
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            App.locationMap = App.tour.location_on_map;
+            if (App.locationMap != null)
+            {
+                string[] parts = App.locationMap.Split(',');
+                Array.Reverse(parts);
+                string reversedString = String.Join(",", parts);
+                string coordinates = reversedString;
+                locationWV.Source = new Uri($"https://yandex.ru/maps/?pt={coordinates}&z=13&l=map");
             }
         }
     }

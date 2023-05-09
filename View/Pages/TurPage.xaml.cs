@@ -49,6 +49,21 @@ namespace kyrsah.View.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             TurLb.ItemsSource = App.context.Tour.ToList();
+            if (App.enteredUser != null)
+            {
+                if (App.enteredUser.role_id == 1)
+                {
+                    AddEventBtn.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    AddEventBtn.Visibility = Visibility.Collapsed;
+                }
+            }
+            else
+            {
+                AddEventBtn.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void AddEventBtn_Click(object sender, RoutedEventArgs e)
@@ -70,9 +85,23 @@ namespace kyrsah.View.Pages
                 Button btn = (Button)sender;
                 int index = int.Parse(btn.Tag.ToString());
                 var currentTour = App.context.Tour.Where(t => t.id == index).FirstOrDefault();
-                App.context.Tour.Remove(currentTour);
-                App.context.SaveChanges();
-                TurLb.ItemsSource = App.context.Tour.ToList();
+                //var tourInCart = App.context.Orders.Select(o => o.event_id == currentTour.id);
+                if (App.context.Orders.Where(o => o.event_id == currentTour.id).FirstOrDefault() != null)
+                {
+                    var tourInCart = App.context.Orders.Where(o => o.event_id == currentTour.id).FirstOrDefault();
+                    App.context.Orders.Remove(tourInCart);
+                    App.context.Tour.Remove(currentTour);
+                    App.context.SaveChanges();
+                    TurLb.ItemsSource = App.context.Tour.ToList();
+                    MessageBox.Show("Данный тур находился в корзине!");
+                }
+                else
+                {
+                    App.context.Tour.Remove(currentTour);
+                    App.context.SaveChanges();
+                    TurLb.ItemsSource = App.context.Tour.ToList();
+                }
+
             }
         }
 
@@ -91,13 +120,7 @@ namespace kyrsah.View.Pages
 
         private void TurLb_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.enteredUser != null)
-            {
-                if (App.enteredUser.role_id == 1)
-                {
 
-                }
-            }
         }
         private void TextBlock_Loaded(object sender, RoutedEventArgs e)
         {

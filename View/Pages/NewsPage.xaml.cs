@@ -16,18 +16,18 @@ using System.Windows.Shapes;
 namespace kyrsah.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ContactsPage.xaml
+    /// Логика взаимодействия для NewsPage.xaml
     /// </summary>
-    public partial class ContactsPage : Page
+    public partial class NewsPage : Page
     {
-        public ContactsPage()
+        public NewsPage()
         {
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            locationWV.Source = new Uri("https://yandex.ru/maps/?whatshere[point]=37.609946,55.728880&whatshere[zoom]=17");
+            newsWV.Source = new Uri("https://riadagestan.ru/news/tourism_events/");
         }
     }
 }

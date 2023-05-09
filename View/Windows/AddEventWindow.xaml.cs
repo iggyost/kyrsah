@@ -56,6 +56,7 @@ namespace kyrsah.View.Windows
             CoordinatesTb.Text = App.tour.location_on_map;
             StartDateDp.SelectedDate = App.tour.start_date;
             ReturnDateDp.SelectedDate = App.tour.return_date;
+            DescriptionTb.Text = App.tour.description;
             AddNewEventBtn.Visibility = Visibility.Collapsed;
             EditEventBtn.Visibility = Visibility.Visible;
             isNameValidated = true;

@@ -19,7 +19,7 @@ namespace kyrsah.Model
         public int event_id { get; set; }
         public decimal total_cost { get; set; }
     
-        public virtual Users Users { get; set; }
         public virtual Tour Tour { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

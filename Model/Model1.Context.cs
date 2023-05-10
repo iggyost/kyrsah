@@ -25,11 +25,10 @@ namespace kyrsah.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Images> Images { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public DbSet<Users> Users { get; set; }
         public DbSet<Tour> Tour { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }

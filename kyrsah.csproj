@@ -83,9 +83,6 @@
     <Compile Include="AppData\ModelHelper.cs" />
     <Compile Include="AppData\TurClass.cs" />
     <Compile Include="AppData\UserSession.cs" />
-    <Compile Include="Model\Images.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -264,6 +261,7 @@
     <Resource Include="Resourses\КАРТА.jpg" />
     <Resource Include="Resourses\заказ.png" />
     <Resource Include="Resourses\заказ1.png" />
+    <Resource Include="Resourses\icons8-location-50.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -274,7 +272,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resourses\icons8-location-50.png" />
     <Content Include="Resourses\полет2.jfif" />
   </ItemGroup>
   <ItemGroup>

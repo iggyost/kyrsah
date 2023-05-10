@@ -36,8 +36,22 @@ namespace kyrsah.View.Pages
                 NavigationService.Navigate(new StartPage1());
                 (Application.Current.MainWindow as StartWindow).AuthRegPanel.Visibility = Visibility.Collapsed;   
                 (Application.Current.MainWindow as StartWindow).AuthUserPanel.Visibility = Visibility.Visible;   
-                (Application.Current.MainWindow as StartWindow).AuthUserTbl.Text = App.enteredUser.email;   
+                (Application.Current.MainWindow as StartWindow).AuthUserTbl.Text = App.enteredUser.full_name;   
             }
+            else
+            {
+                MessageBox.Show("Пользователь не найден!");
+            }
+        }
+
+        private void PasswordPb_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EmailTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

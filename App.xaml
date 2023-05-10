@@ -4,7 +4,138 @@
              xmlns:local="clr-namespace:kyrsah"
              StartupUri="View/Windows/StartWindow.xaml">
     <Application.Resources>
-       
+        <Style TargetType="TextBlock" x:Key="defaultTbl">
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="validationTbl">
+            <Setter Property="Foreground" Value="#FFFFD4D4" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#3F000000" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="LinedTbStyle">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="#FF49B5BD" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <StackPanel>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Focusable="False"></ScrollViewer>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="2"></Border>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <!--<EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="SkyBlue"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FF49B5BD"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>-->
+                            <EventTrigger RoutedEvent="ScrollViewer.GotFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="SkyBlue"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ScrollViewer.LostFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FF49B5BD"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="PasswordBox" x:Key="LinedPbStyle">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="#FF49B5BD" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <StackPanel>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Focusable="False"></ScrollViewer>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="2"></Border>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <!--<EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="SkyBlue"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FF49B5BD"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>-->
+                            <EventTrigger RoutedEvent="ScrollViewer.GotFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="SkyBlue"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ScrollViewer.LostFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FF49B5BD"
+                                                        Storyboard.TargetProperty="(TextBox.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.25"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--#region Специальные стили -->
         <Style TargetType="Button" x:Key="MenuButton">
             <Setter Property="Background" Value="Transparent"/>

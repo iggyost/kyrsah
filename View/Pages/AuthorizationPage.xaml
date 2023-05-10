@@ -12,76 +12,100 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="130"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0"
-                    Margin="216,0,0,0"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
             <TextBlock Text="Авторизация"
                        FontSize="45"
-                       Foreground="White" FontWeight="Bold" Width="1233"/>
+                       Foreground="White" 
+                       FontWeight="SemiBold"/>
         </StackPanel>
         <TextBlock Text="Введите адрес электронной почты"
-                       FontSize="35"
-                       Foreground="White" 
-                       Grid.Row="1" FontWeight="Bold" Margin="216,0,0,0"/>
+                   FontSize="35"
+                   Margin="0 8 0 0"
+                   Foreground="White" 
+                   Grid.Row="1" 
+                   HorizontalAlignment="Center" />
         <GroupBox Grid.Row="2"
                   Foreground="White"
-                  FontSize="47"
+                  HorizontalAlignment="Center"
+                  Width="800"
                   BorderThickness="0">
-            <TextBox  
-                      Name="EmailTb" FontSize="45"
-                     Grid.Row="3" Height="65" Margin="216,10,216,10"/>
+            <StackPanel>
+                <TextBox Name="EmailTb" 
+                     FontSize="45"
+                     Grid.Row="3" 
+                     Style="{StaticResource LinedTbStyle}"
+                     Height="65" TextChanged="EmailTb_TextChanged"/>
+            </StackPanel>
 
         </GroupBox>
         <TextBlock Text="Введите пароль"
-                       FontSize="35"
-                       Foreground="White" 
-                       Grid.Row="3" FontWeight="Bold" Margin="216,0,0,0"/>
+                   FontSize="35"
+                   Foreground="White" 
+                   Grid.Row="3" 
+                   HorizontalAlignment="Center"/>
 
         <TextBlock Text="Забыли пароль?"
-                   FontSize="30"
-                   Foreground="White"
-                   FontWeight="Bold"
-                   Grid.Row="5" Margin="216,0,0,0"/>
+                   FontSize="24"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#8FFFFFFF"
+                   FontWeight="SemiBold"
+                   Grid.Row="5"/>
 
         <GroupBox Grid.Row="4"
                   Foreground="White"
+                  HorizontalAlignment="Center"
                   FontSize="47"
                   BorderThickness="0">
-            <PasswordBox 
-                Name="PasswordPb" 
-                Height="65" 
-                Margin="216,10,216,10"
-                FontSize="45">
-
-            </PasswordBox>
+            <StackPanel>
+                <PasswordBox Name="PasswordPb" 
+                             Style="{StaticResource LinedPbStyle}"
+                             Height="65" 
+                             Width="800"
+                             FontSize="45" PasswordChanged="PasswordPb_PasswordChanged">
+                </PasswordBox>
+            </StackPanel>
 
         </GroupBox>
         <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Center"
-                    Grid.Row="6" Height="104" Margin="0,0,0,86">
+                    HorizontalAlignment="Center"
+                    Grid.Row="6" 
+                    Height="104">
 
             <Button Name="LoginBtn"
-                Content="Войти"
-                    Margin="216,0,0,0"
-                    FontSize="40"
-                Click="LoginBtn_Click"  Width="250"
-                    Style="{StaticResource RegistrationButton}" FontWeight="Bold"/>
+                    Content="Войти"
+                    FontSize="36"
+                    Click="LoginBtn_Click"  
+                    Width="250"
+                    Style="{StaticResource RegistrationButton}" 
+                    FontWeight="Bold"/>
 
             <TextBlock Text="или"
-                               Foreground="#8FFFFFFF"
-                               FontSize="35"
-                               Margin="5 0 15 0"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center" RenderTransformOrigin="0.535,-0.588" FontWeight="Bold" TextDecorations="{x:Null}"/>
-            <TextBlock Height="45" FontWeight="Bold" Margin="0,30"><Hyperlink NavigateUri=" View/Pages/RegistrationPage.xaml"  
-                           FontSize="35"><Run Text="Зарегистрироваться"/></Hyperlink></TextBlock>
+                       Foreground="#8FFFFFFF"
+                       FontSize="35"
+                       Margin="5 0 15 0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" 
+                       RenderTransformOrigin="0.535,-0.588" 
+                       FontWeight="Bold" 
+                       TextDecorations="{x:Null}"/>
+            <TextBlock Height="45" 
+                       FontWeight="Bold">
+                <Hyperlink NavigateUri=" View/Pages/RegistrationPage.xaml"  
+                           FontSize="35">
+                    <Run Text="Зарегистрироваться"/>
+                </Hyperlink>
+            </TextBlock>
 
         </StackPanel>
 

@@ -29,10 +29,12 @@ namespace kyrsah.View.Windows
             InitializeComponent();
             EditEventBtn.Visibility = Visibility.Collapsed;
             AddNewEventBtn.Visibility = Visibility.Visible;
+            this.Title = "Добавление тура";
         }
         public AddEventWindow(Tour selectedTour)
         {
             InitializeComponent();
+            this.Title = "Редактирование тура";
             selectedTour = App.tour;
             if (App.tour.image != null)
             {

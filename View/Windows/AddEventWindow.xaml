@@ -53,6 +53,7 @@
                                                 HorizontalAlignment="Left"
                                                 Panel.ZIndex="1">
                                 <Button Name="AddImageBtn" 
+                                        Style="{StaticResource RegistrationButton}"
                                                 Click="AddImageBtn_Click">Добавить фото</Button>
                                 <Button Name="RemoveImageBtn"
                                                 Visibility="Collapsed"
@@ -69,6 +70,22 @@
                             </Border>
                         </Grid>
                     </Border>
+                    <StackPanel Grid.Row="1" Margin="0 64">
+                        <TextBlock FontSize="32" 
+                                           Foreground="White">Цена тура</TextBlock>
+                        <TextBox Name="CostTb"
+                                         Width="150"
+                                         HorizontalAlignment="Left"
+                                         FontSize="20" 
+                                         TextChanged="CostTb_TextChanged"></TextBox>
+                        <TextBlock Name="CostValidationTbl"
+                                       FontSize="20"
+                                       HorizontalAlignment="Left"
+                                       Foreground="LightCoral" 
+                                       Background="#7F000000"
+                                       MaxWidth="500"
+                                       TextWrapping="Wrap"></TextBlock>
+                    </StackPanel>
                     <StackPanel Grid.Column="1"
                                 Grid.RowSpan="3"
                                 HorizontalAlignment="Left"
@@ -109,10 +126,12 @@
                         <StackPanel>
                             <TextBlock FontSize="24"
                                        Foreground="White">Описание</TextBlock>
-                            <TextBox Height="64"
+                            <TextBox Height="190"
+                                     VerticalScrollBarVisibility="Visible"
                                      Name="DescriptionTb"
                                      TextWrapping="Wrap"
-                                     MaxLength="500"></TextBox>
+                                     AcceptsReturn="True"
+                                     MaxLength="2000"></TextBox>
                         </StackPanel>
                         <StackPanel>
                             <TextBlock FontSize="24" 
@@ -171,33 +190,17 @@
                                        TextWrapping="Wrap"
                                        MaxWidth="500"></TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Column="1"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Left">
-                            <StackPanel>
-                                <TextBlock FontSize="32" 
-                                           Foreground="White"
-                                           Text="{Binding Tour.cost}">Цена</TextBlock>
-                                <TextBox Name="CostTb"
-                                         Width="150"
-                                         HorizontalAlignment="Left"
-                                 FontSize="20" TextChanged="CostTb_TextChanged"></TextBox>
-                            </StackPanel>
-                            <TextBlock Name="CostValidationTbl"
-                                       FontSize="20"
-                                       HorizontalAlignment="Left"
-                                       Foreground="LightCoral" 
-                                       Background="#7F000000"
-                                       MaxWidth="500"
-                                       TextWrapping="Wrap"></TextBlock>
-                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </Grid>
         </Border>
         <Button Grid.Row="1"
+                Style="{StaticResource RegistrationButton}"
+                Width="400"
                 Name="AddNewEventBtn" Click="AddNewEventBtn_Click">Добавить</Button>
         <Button Grid.Row="1"
+                Style="{StaticResource RegistrationButton}"
+                Width="600"
                 Name="EditEventBtn" Click="EditEventBtn_Click">Принять изменения</Button>
     </Grid>
 </Window>

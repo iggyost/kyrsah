@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:kyrsah.View.Pages"
       mc:Ignorable="d" 
+      xml:lang="RU-ru"
       d:DesignHeight="720" d:DesignWidth="1244"
       Title="CartPage">
 
@@ -29,7 +30,8 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center">0₽</TextBlock>
                 </Border>
-                <Button Style="{StaticResource RegistrationButton}">Оплатить</Button>
+                <Button Style="{StaticResource RegistrationButton}"
+                        Name="PayBtn" Click="PayBtn_Click">Оплатить</Button>
             </StackPanel>
         </StackPanel>
         <ListBox Name="ToursCartLb" 

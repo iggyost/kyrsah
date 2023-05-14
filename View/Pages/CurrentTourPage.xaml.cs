@@ -2,6 +2,7 @@
 using kyrsah.View.Windows;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -15,12 +16,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace kyrsah.View.Pages
 {
     /// <summary>
     /// Логика взаимодействия для CurrentTourPage.xaml
     /// </summary>
+    /// 
     public partial class CurrentTourPage : Page
     {
         public CurrentTourPage(Tour selectedTour)

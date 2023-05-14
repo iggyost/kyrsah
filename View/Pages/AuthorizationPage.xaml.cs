@@ -53,6 +53,11 @@ namespace kyrsah.View.Pages
         {
 
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistrationPage());
+        }
     }
 }
 

@@ -1,7 +1,9 @@
 ﻿using kyrsah.Model;
+using kyrsah.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -99,6 +101,53 @@ namespace kyrsah.View.Pages
                 ToursCartLb.ItemsSource = tours;
                 totalCost = totalCost - currentTour.cost;
                 totalCostTbl.Text = totalCost.ToString() + "₽";
+            }
+        }
+
+        private void PayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (ToursCartLb.Items.Count == 0)
+            {
+                MessageBox.Show("Корзина пуста!");
+            }
+            else
+            {
+                PaymentWindow paymentWindow = new PaymentWindow();
+                paymentWindow.ShowDialog();
+                if (paymentWindow.DialogResult == true)
+                {
+                    var rows = from o in App.context.Orders
+                               where o.user_id == App.enteredUser.id
+                               select o;
+                    foreach (var row in rows)
+                    {
+                        App.context.Orders.Remove(row);
+                    }
+                    App.context.SaveChanges();
+                    totalCostTbl.Text = 0.ToString() + "₽";
+                }
+                else
+                {
+
+                }
+                var tours = App.context.Tour
+                                       .Join(App.context.Orders, tour => tour.id, orders => orders.event_id, (tour, orders) => new { tour, orders })
+                                       .Where(x => x.orders.user_id == App.enteredUser.id)
+                                       .Select(x => x.tour)
+                                       .ToList();
+                ToursCartLb.ItemsSource = tours;
+                if (ToursCartLb.HasItems)
+                {
+                    foreach (var item in tours)
+                    {
+                        totalCost += item.cost;
+                    }
+                    totalCostTbl.Text = 0.ToString() + "₽";
+                }
+                else
+                {
+
+                }
             }
         }
     }

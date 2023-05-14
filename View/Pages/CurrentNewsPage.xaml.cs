@@ -16,18 +16,23 @@ using System.Windows.Shapes;
 namespace kyrsah.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для StartPage1.xaml
+    /// Логика взаимодействия для CurrentNewsPage.xaml
     /// </summary>
-    public partial class StartPage1 : Page
+    public partial class CurrentNewsPage : Page
     {
-        public StartPage1()
+        public CurrentNewsPage()
         {
             InitializeComponent();
         }
 
-        private void TurVbBth_Click(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new TurPage());
+            DataContext = App.selectedNews;
+        }
+
+        private void ReturnBackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new NewsPage());
         }
     }
 }

@@ -4,15 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5e36370a7d8341d6872da5e49e6e0419" Name="Diagram1">
+      <Diagram DiagramId="36063f07114047569a72e5acb978e5be" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="DagestanToursDbModel.Orders" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DagestanToursDbModel.Roles" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DagestanToursDbModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DagestanToursDbModel.Tour" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.sysdiagrams" Width="1.5" PointX="9.125" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.Tour" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DagestanToursDbModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="DagestanToursDbModel.FK_Orders_Tour" ManuallyRouted="false" />
         <AssociationConnector Association="DagestanToursDbModel.FK_Orders_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DagestanToursDbModel.FK_Users_Roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DagestanToursDbModel.News" Width="1.5" PointX="0.875" PointY="4.125" />
+        <AssociationConnector Association="DagestanToursDbModel.FK_News_Roles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

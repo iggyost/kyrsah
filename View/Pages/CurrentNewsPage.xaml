@@ -1,0 +1,55 @@
+﻿<Page x:Class="kyrsah.View.Pages.CurrentNewsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kyrsah.View.Pages"
+      mc:Ignorable="d" 
+      xml:lang="RU-ru"
+      d:DesignHeight="720" d:DesignWidth="1244"
+      Title="CurrentNewsPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <ScrollViewer>
+            <Border>
+                <Grid>
+                    <Border Background="#24000000"
+                            CornerRadius="8"
+                            Margin="16">
+                        <StackPanel Margin="16">
+                            <TextBlock Style="{StaticResource defaultTbl}"
+                                       HorizontalAlignment="Left"
+                                       Foreground="LightGray"
+                                       FontSize="20"
+                                       Margin="0 0 0 16"
+                                       Text="{Binding news_publication_date,StringFormat={}Дата публикации: {0:dd MMMM в HH:mm }}"></TextBlock>
+                            <TextBlock Style="{StaticResource defaultTbl}"
+                                       Text="{Binding header}"
+                                       TextWrapping="Wrap"
+                                       FontSize="44"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Left"></TextBlock>
+                            <Image Source="{Binding news_image}"
+                                   Stretch="Fill"
+                                   Height="360"
+                                   Width="512"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   Margin="0 16"></Image>
+                            <TextBlock Style="{StaticResource defaultTbl}"
+                                       FontSize="36"
+                                       FontWeight="Light"
+                                       HorizontalAlignment="Left"
+                                       Text="{Binding information}"
+                                       TextWrapping="Wrap"></TextBlock>
+                            <Button Margin="8 32 0 0"
+                                    Name="ReturnBackBtn"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource RegistrationButton}" Click="ReturnBackBtn_Click">Вернуться назад</Button>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>

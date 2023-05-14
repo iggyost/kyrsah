@@ -11,9 +11,6 @@
         ResizeMode="NoResize">
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/kyrsah;component/Resourses/даг2.jpg"/>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="7*"/>
@@ -24,9 +21,17 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Image Source="/kyrsah;component/Resourses/даг2.jpg"
+               Grid.ColumnSpan="3"
+               Grid.RowSpan="3">
+            <Image.Effect>
+                <BlurEffect Radius="10"></BlurEffect>
+            </Image.Effect>
+        </Image>
         <Rectangle Grid.ColumnSpan="3"
                    Grid.RowSpan="3" 
-                   Fill="#26000000"></Rectangle>
+                   Fill="#3F000000">
+        </Rectangle>
         <!--#region Меню приложения-->
         <Border Grid.Row="1"
                 Grid.Column="1"

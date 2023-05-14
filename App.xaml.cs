@@ -20,5 +20,6 @@ namespace kyrsah
         public static Orders orders = new Orders();
         public static Users enteredUser;
         public static string locationMap;
+        public static News selectedNews = new News();
     }
 }

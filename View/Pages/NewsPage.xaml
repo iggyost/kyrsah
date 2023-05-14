@@ -6,10 +6,86 @@
       xmlns:local="clr-namespace:kyrsah.View.Pages"
       xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
       mc:Ignorable="d" 
+      xml:lang="RU-ru"
       d:DesignHeight="720" d:DesignWidth="1244"
       Title="NewsPage" Loaded="Page_Loaded">
 
     <Grid>
-        <wv2:WebView2 Name="newsWV"></wv2:WebView2>
+        <Button VerticalAlignment="Top"
+                Style="{StaticResource RegistrationButton}"
+                Width="300"
+                Margin="256 0 0 0"
+                Panel.ZIndex="1"
+                Name="AddNewsBtn" Click="AddNewsBtn_Click">Добавить новость</Button>
+        <ListBox Background="Transparent"
+                 BorderThickness="0"
+                 Grid.Row="1"
+                 Name="NewsLb"
+                 VirtualizingPanel.ScrollUnit="Pixel"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 Cursor="Hand" SelectionChanged="NewsLb_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="360"
+                            Width="600"
+                            VerticalAlignment="Top">
+                        <Grid VerticalAlignment="Center"
+                              HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="256"></ColumnDefinition>
+                                <ColumnDefinition Width="16"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="256"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Column="2"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="Collapsed"
+                                        Tag="{Binding role_id}"
+                                        Name="EditRemovePanel" Loaded="EditRemovePanel_Loaded">
+                                <Button Margin="0 0 16 0"
+                                        Tag="{Binding id}"
+                                        FontSize="16"
+                                        Style="{StaticResource RegistrationButton}"
+                                        Name="EditNewsBtn" Click="EditNewsBtn_Click">Изменить</Button>
+                                <Button Style="{StaticResource RegistrationButton}"
+                                        Tag="{Binding id}"
+                                        FontSize="16"
+                                        Name="RemoveNewsBtn" Click="RemoveNewsBtn_Click">Удалить</Button>
+                            </StackPanel>
+                            <Image Grid.Row="1"
+                                   Source="{Binding news_image}"
+                                   Stretch="Fill"></Image>
+                            <TextBlock Style="{StaticResource defaultTbl}"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       Grid.Column="2"
+                                       Grid.Row="1"
+                                       FontSize="32"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="Wrap"
+                                       Text="{Binding header}"></TextBlock>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="2"
+                                       FontSize="20"
+                                       Foreground="LightGray"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Style="{StaticResource defaultTbl}"
+                                       Text="{Binding news_publication_date,StringFormat={}Дата публикации: {0:dd MMMM в HH:mm }}"></TextBlock>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </Grid>
 </Page>

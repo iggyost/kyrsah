@@ -53,13 +53,13 @@
                    Grid.Row="3" 
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Text="Забыли пароль?"
+        <!--<TextBlock Text="Забыли пароль?"
                    FontSize="24"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Foreground="#8FFFFFFF"
                    FontWeight="SemiBold"
-                   Grid.Row="5"/>
+                   Grid.Row="5"/>-->
 
         <GroupBox Grid.Row="4"
                   Foreground="White"
@@ -102,7 +102,7 @@
             <TextBlock Height="45" 
                        FontWeight="Bold">
                 <Hyperlink NavigateUri=" View/Pages/RegistrationPage.xaml"  
-                           FontSize="35">
+                           FontSize="35" Click="Hyperlink_Click">
                     <Run Text="Зарегистрироваться"/>
                 </Hyperlink>
             </TextBlock>

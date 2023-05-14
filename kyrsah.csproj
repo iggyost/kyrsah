@@ -98,6 +98,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\News.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Orders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -122,6 +125,9 @@
     <Compile Include="View\Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\CurrentNewsPage.xaml.cs">
+      <DependentUpon>CurrentNewsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\CurrentTourPage.xaml.cs">
       <DependentUpon>CurrentTourPage.xaml</DependentUpon>
     </Compile>
@@ -137,8 +143,14 @@
     <Compile Include="View\Pages\TurPage.xaml.cs">
       <DependentUpon>TurPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\AddEditNewsWindows.xaml.cs">
+      <DependentUpon>AddEditNewsWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\AddEventWindow.xaml.cs">
       <DependentUpon>AddEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\PaymentWindow.xaml.cs">
+      <DependentUpon>PaymentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
@@ -194,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\CurrentNewsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\CurrentTourPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,7 +230,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Windows\AddEditNewsWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windows\AddEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\PaymentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

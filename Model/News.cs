@@ -12,18 +12,15 @@ namespace kyrsah.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class News
     {
-        public Roles()
-        {
-            this.Users = new HashSet<Users>();
-            this.News = new HashSet<News>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
+        public int role_id { get; set; }
+        public string header { get; set; }
+        public string information { get; set; }
+        public byte[] news_image { get; set; }
+        public System.DateTime news_publication_date { get; set; }
     
-        public virtual ICollection<Users> Users { get; set; }
-        public virtual ICollection<News> News { get; set; }
+        public virtual Roles Roles { get; set; }
     }
 }

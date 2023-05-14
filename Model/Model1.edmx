@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DagestanToursDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DagestanToursDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="header" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="information" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="news_image" Type="varbinary(max)" Nullable="false" />
+          <Property Name="news_publication_date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="id" />
@@ -37,7 +48,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="description" Type="nvarchar" MaxLength="2000" />
           <Property Name="cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="location" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="location_on_map" Type="nvarchar" MaxLength="300" />
@@ -57,6 +68,18 @@
           <Property Name="full_name" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_News_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Tour">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -94,11 +117,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище DagestanToursDbModelContainer">
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_News_Roles" Association="Self.FK_News_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_Tour" Association="Self.FK_Orders_Tour">
             <End Role="Tour" EntitySet="Tour" />
             <End Role="Orders" EntitySet="Orders" />
@@ -112,8 +140,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DagestanToursDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -135,6 +162,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+          <NavigationProperty Name="News" Relationship="DagestanToursDbModel.FK_News_Roles" FromRole="Roles" ToRole="News" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -152,7 +180,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="location_on_map" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -229,7 +257,36 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="News" EntityType="DagestanToursDbModel.News" />
+          <AssociationSet Name="FK_News_Roles" Association="DagestanToursDbModel.FK_News_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="header" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="information" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="news_image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="news_publication_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Roles" Relationship="DagestanToursDbModel.FK_News_Roles" FromRole="News" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_News_Roles">
+          <End Type="DagestanToursDbModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="DagestanToursDbModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -290,6 +347,18 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="DagestanToursDbModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="news_publication_date" ColumnName="news_publication_date" />
+                <ScalarProperty Name="news_image" ColumnName="news_image" />
+                <ScalarProperty Name="information" ColumnName="information" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

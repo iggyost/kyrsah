@@ -20,7 +20,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -44,7 +44,7 @@
                  Height="65" TextChanged="EmailTb_TextChanged" ></TextBox>
         <TextBlock Style="{StaticResource validationTbl}"
                    Grid.Row="3"
-                   Name="EmailValidationMessage">ERROR</TextBlock>
+                   Name="EmailValidationMessage"></TextBlock>
         <TextBlock Style="{StaticResource defaultTbl}"
                    Grid.Row="4">Введите пароль:</TextBlock>
         <PasswordBox Grid.Row="5"
@@ -57,7 +57,7 @@
         <TextBlock Style="{StaticResource validationTbl}"
                    Name="PasswordValidationMessage"
                    Grid.Row="6"
-                   TextWrapping="Wrap">ERROR</TextBlock>
+                   TextWrapping="Wrap"></TextBlock>
         <TextBlock Grid.Row="7"
                    Style="{StaticResource defaultTbl}">Подтвердите пароль</TextBlock>
         <PasswordBox Style="{StaticResource LinedPbStyle}"
@@ -69,7 +69,7 @@
         <TextBlock Style="{StaticResource validationTbl}"
                    Name="CompleteValidationMessage"
                    Grid.Row="9"
-                   TextWrapping="Wrap">ERROR</TextBlock>
+                   TextWrapping="Wrap"></TextBlock>
 
         <Button Name="RegistrationBtn"
                 Grid.ColumnSpan="2"
@@ -119,11 +119,11 @@
             </Grid.ColumnDefinitions>
             <TextBlock Style="{StaticResource validationTbl}"
                        Name="NameValidationMessage"
-                       TextWrapping="Wrap">ERROR</TextBlock>
+                       TextWrapping="Wrap"></TextBlock>
             <TextBlock Grid.Column="1"
                        Style="{StaticResource validationTbl}"
                        Name="StepnameValidationMessage"
-                       TextWrapping="Wrap">ERROR</TextBlock>
+                       TextWrapping="Wrap"></TextBlock>
         </Grid>
         <TextBlock Grid.Row="4"
                    Grid.Column="1"
@@ -140,7 +140,7 @@
                    Grid.Column="1"
                    TextWrapping="Wrap"
                    Name="PhoneValidationMessage"
-                   Style="{StaticResource validationTbl}">ERROR</TextBlock>
+                   Style="{StaticResource validationTbl}"></TextBlock>
 
     </Grid>
 </Page>

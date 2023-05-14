@@ -1,0 +1,186 @@
+﻿<Window x:Class="kyrsah.View.Windows.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kyrsah.View.Windows"
+        mc:Ignorable="d"
+        Title="PaymentWindow" Height="950" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Name="WindowMenuGrid"
+              Panel.ZIndex="1"
+              Background="#FF29A4AD"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width ="1*"/>
+                <ColumnDefinition Width ="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Окно оплаты ExcursionPRO"
+                       Foreground="White"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       Margin="10 0 0 0"/>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right">
+                <Button Name="CloseAppBtn"
+                        Content="✕"
+                        Style="{StaticResource WindowButton}"
+                        Click="CloseAppBtn_Click"
+                        ToolTip="Закрыть"/>
+            </StackPanel>
+        </Grid>
+        <Image Grid.ColumnSpan="2"
+               Grid.RowSpan="3" Source="/Resourses/dagestan.jpg" Stretch="Fill">
+            <Image.Effect>
+                <BlurEffect Radius="10"></BlurEffect>
+            </Image.Effect>
+        </Image>
+        <Rectangle Grid.ColumnSpan="2"
+                   Grid.RowSpan="3" Fill="#33000000"></Rectangle>
+        <TextBlock Grid.Column="1"
+                   Grid.Row="1"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   FontSize="44"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center">Детали оплаты</TextBlock>
+        <Grid Grid.Row="2"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="128"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Foreground="White"
+                           FontSize="32"
+                           FontWeight="Medium">Номер карты</TextBlock>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0 16 0 0">
+                    <TextBox Style="{StaticResource LinedTbStyle}"
+                             FontSize="40"
+                             Width="100"
+                             Margin="8 0"
+                             Name="firstBlockCardNumberTb"
+                             MaxLength="4" TextChanged="firstBlockCardNumberTb_TextChanged"></TextBox>
+                    <TextBox Style="{StaticResource LinedTbStyle}"
+                             FontSize="40"
+                             Width="100"
+                             Margin="8 0"
+                             Name="secondBlockCardNumberTb"
+                             IsEnabled="False"
+                             MaxLength="4" TextChanged="secondBlockCardNumberTb_TextChanged"></TextBox>
+                    <TextBox Style="{StaticResource LinedTbStyle}"
+                             FontSize="40"
+                             Width="100"
+                             Margin="8 0"
+                             Name="thirdBlockCardNumberTb"
+                             IsEnabled="False"
+                             MaxLength="4" TextChanged="thirdBlockCardNumberTb_TextChanged"></TextBox>
+                    <TextBox Style="{StaticResource LinedTbStyle}"
+                             FontSize="40"
+                             Width="100"
+                             Margin="8 0"
+                             Name="fourthBlockCardNumberTb"
+                             IsEnabled="False"
+                             MaxLength="4" TextChanged="fourthBlockCardNumberTb_TextChanged"></TextBox>
+                </StackPanel>
+                <TextBlock Style="{StaticResource validationTbl}"
+                           Margin="0 12"
+                           Name="validationCardNumberTbl"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Foreground="White"
+                           FontSize="32"
+                           FontWeight="Medium">Имя фамилия держателя карты</TextBlock>
+                <TextBox Style="{StaticResource LinedTbStyle}"
+                         FontSize="28"
+
+                         Name="CartHolderTb" TextChanged="CartHolderTb_TextChanged"
+                         Margin="0 16 0 0"></TextBox>
+                <TextBlock Style="{StaticResource validationTbl}"
+                           Margin="0 16 0 0"
+                           Name="validationCartHolderTbl"></TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="16">
+                    <TextBlock Foreground="White"
+                               FontSize="32"
+                               FontWeight="Medium">День</TextBlock>
+                    <TextBox Style="{StaticResource LinedTbStyle}"
+                             FontSize="28"
+                             Name="DayTb"
+                             MaxLength="2" TextChanged="DayTb_TextChanged"></TextBox>
+                    <TextBlock Style="{StaticResource validationTbl}"
+                               Name="validationDayTbl"
+                               TextWrapping="Wrap"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                            Margin="16">
+                    <TextBlock Foreground="White"
+                               FontSize="32"
+                               FontWeight="Medium">Год</TextBlock>
+                    <TextBox Grid.Column="1"
+                             Style="{StaticResource LinedTbStyle}"
+                             FontSize="28"
+                             Name="YearTb"
+                             MaxLength="4" TextChanged="YearTb_TextChanged"></TextBox>
+                    <TextBlock Style="{StaticResource validationTbl}"
+                               Name="validationYearTbl"
+                               TextWrapping="Wrap"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2"
+                            Margin="16">
+                    <TextBlock Foreground="White"
+                               FontSize="32"
+                               FontWeight="Medium">CVV-Код</TextBlock>
+                    <PasswordBox Grid.Column="2"
+                                 Style="{StaticResource LinedPbStyle}"
+                                 FontSize="28"
+                                 Name="CVCodeTb"
+                                 MaxLength="3" PasswordChanged="CVCodeTb_PasswordChanged"></PasswordBox>
+                    <TextBlock Style="{StaticResource validationTbl}"
+                               Name="validationCVVCodeTbl"
+                               TextWrapping="Wrap"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="144"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource RegistrationButton}"
+                        Name="PayBtn" Click="PayBtn_Click">Принять и оплатить</Button>
+                <Button Grid.Column="1"
+                        Style="{StaticResource RegistrationButton}"
+                        Background="Transparent"
+                        Foreground="White"
+                        Name="CancelBtn" Click="CancelBtn_Click">Отмена</Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -96,17 +96,17 @@
                                 VerticalAlignment="Bottom"
                                 HorizontalAlignment="Left"
                                 Margin="24 0 0 24">
-                                <TextBlock FontSize="24" 
+                                <TextBlock FontSize="22" 
                                    Foreground="White"
                                    Text="{Binding start_date, StringFormat={}{0:dd MMMM\, dddd}}"></TextBlock>
                                 <Border BorderBrush="White"
                                 BorderThickness="2"
-                                Width="32"
+                                Width="16"
                                 Height="2"
-                                Margin="24 4 0 0"></Border>
-                                <TextBlock FontSize="24" 
+                                Margin="12 4 0 0"></Border>
+                                <TextBlock FontSize="22" 
                                    Foreground="White"
-                                   Margin="24 0 0 0"
+                                   Margin="12 0 0 0"
                                    Text="{Binding return_date, StringFormat={}{0:dd MMMM\, dddd}}"></TextBlock>
                             </StackPanel>
                             <Border Grid.Column="1"

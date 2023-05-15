@@ -16,8 +16,9 @@ namespace kyrsah.Model
     {
         public int id { get; set; }
         public int user_id { get; set; }
-        public int event_id { get; set; }
+        public Nullable<int> event_id { get; set; }
         public decimal total_cost { get; set; }
+        public bool is_paid { get; set; }
     
         public virtual Tour Tour { get; set; }
         public virtual Users Users { get; set; }

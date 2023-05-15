@@ -80,27 +80,30 @@ namespace kyrsah.View.Pages
         {
             MessageBoxResult result;
             result = MessageBox.Show("Вы действительно хотите удалить тур?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            Button btn = (Button)sender;
+            int index = int.Parse(btn.Tag.ToString());
+            var thisTour = App.context.Tour.Where(t => t.id == index);
             if (result == MessageBoxResult.Yes)
             {
-                Button btn = (Button)sender;
-                int index = int.Parse(btn.Tag.ToString());
-                var currentTour = App.context.Tour.Where(t => t.id == index).FirstOrDefault();
-                //var tourInCart = App.context.Orders.Select(o => o.event_id == currentTour.id);
-                if (App.context.Orders.Where(o => o.event_id == currentTour.id).FirstOrDefault() != null)
+                if (App.context.Orders.Join(App.context.Tour, ordere => ordere.event_id, toure => toure.id, (ordere, toure) => new {ordere,toure}).Where(x => x.ordere.event_id == x.toure.id) != null)
                 {
-                    var tourInCart = App.context.Orders.Where(o => o.event_id == currentTour.id).FirstOrDefault();
-                    App.context.Orders.Remove(tourInCart);
-                    App.context.Tour.Remove(currentTour);
-                    App.context.SaveChanges();
-                    TurLb.ItemsSource = App.context.Tour.ToList();
-                    MessageBox.Show("Данный тур находился в корзине!");
+                    var order = App.context.Orders.Join(App.context.Tour, orders => orders.event_id, tour => tour.id, (orders, tour) => new { orders, tour })
+                                      .Where(x => x.orders.event_id == x.tour.id)
+                                      .Select(x => x.orders);
+                    var tourl = App.context.Tour.Join(App.context.Orders, tours => tours.id, orders => orders.event_id, (tours, orders) => new { tours, orders })
+                                                 .Where(x => x.orders.event_id == x.tours.id)
+                                                 .Select(x => x.tours);
+                    App.context.Entry(order.FirstOrDefault()).State = System.Data.EntityState.Deleted;
+                    App.context.Entry(tourl.FirstOrDefault()).State = System.Data.EntityState.Deleted;
                 }
                 else
                 {
-                    App.context.Tour.Remove(currentTour);
-                    App.context.SaveChanges();
-                    TurLb.ItemsSource = App.context.Tour.ToList();
+                    App.context.Entry(thisTour.FirstOrDefault()).State = System.Data.EntityState.Deleted;
                 }
+                App.context.SaveChanges();
+            }
+            else
+            {
 
             }
         }

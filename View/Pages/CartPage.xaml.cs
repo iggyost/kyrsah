@@ -2,6 +2,7 @@
 using kyrsah.View.Windows;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
@@ -72,9 +73,9 @@ namespace kyrsah.View.Pages
             ToursCartLb.ItemsSource = tours;
             if (ToursCartLb.HasItems)
             {
-                foreach (var item in tours)
+                foreach (var item in tours.Join(App.context.Orders, t => t.id, o => o.event_id, (t, o) => new { t, o }).Where(x => x.o.is_paid == false && App.enteredUser.id == x.o.user_id))
                 {
-                    totalCost += item.cost;
+                    totalCost += item.t.cost;
                 }
                 totalCostTbl.Text = totalCost.ToString() + "₽";
             }
@@ -99,8 +100,11 @@ namespace kyrsah.View.Pages
                                    .Select(x => x.tour)
                                    .ToList();
                 ToursCartLb.ItemsSource = tours;
-                totalCost = totalCost - currentTour.cost;
-                totalCostTbl.Text = totalCost.ToString() + "₽";
+                if (tourInCart.is_paid == false)
+                {
+                    totalCost = totalCost - currentTour.cost;
+                    totalCostTbl.Text = totalCost.ToString() + "₽";
+                }
             }
         }
 
@@ -121,7 +125,7 @@ namespace kyrsah.View.Pages
                                select o;
                     foreach (var row in rows)
                     {
-                        App.context.Orders.Remove(row);
+                        row.is_paid = true;
                     }
                     App.context.SaveChanges();
                     totalCostTbl.Text = 0.ToString() + "₽";
@@ -149,6 +153,30 @@ namespace kyrsah.View.Pages
 
                 }
             }
+        }
+        TextBlock tblStatus;
+        private void OrderStatusTbl_Loaded(object sender, RoutedEventArgs e)
+        {
+            tblStatus = (TextBlock)sender;
+            int index = int.Parse(tblStatus.Tag.ToString());
+            var currentOrder = App.context.Orders.Where(o => o.event_id == index && o.event_id == indexEllipse && App.enteredUser.id == o.user_id).FirstOrDefault();
+            if (currentOrder.is_paid == true)
+            {
+                tblStatus.Text = "Оплачено";
+                ellipseStatus.Fill = System.Windows.Media.Brushes.Green;
+            }
+            else
+            {
+                tblStatus.Text = "Ждет оплаты";
+                ellipseStatus.Fill = System.Windows.Media.Brushes.Orange;
+            }
+        }
+        Ellipse ellipseStatus;
+        int indexEllipse;
+        private void EllipseStatus_Loaded(object sender, RoutedEventArgs e)
+        {
+            ellipseStatus = (Ellipse)sender;
+            indexEllipse = int.Parse(ellipseStatus.Tag.ToString());
         }
     }
 }

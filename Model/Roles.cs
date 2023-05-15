@@ -16,14 +16,14 @@ namespace kyrsah.Model
     {
         public Roles()
         {
-            this.Users = new HashSet<Users>();
             this.News = new HashSet<News>();
+            this.Users = new HashSet<Users>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
     
-        public virtual ICollection<Users> Users { get; set; }
         public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

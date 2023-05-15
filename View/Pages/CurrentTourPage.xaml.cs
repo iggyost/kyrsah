@@ -95,6 +95,7 @@ namespace kyrsah.View.Pages
                     event_id = App.tour.id,
                     user_id = App.enteredUser.id,
                     total_cost = App.tour.cost,
+                    is_paid = false
                 };
                 try
                 {
